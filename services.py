@@ -7,6 +7,7 @@ To switch providers, modify this file only.
 Supported:
   - Video: Veo 3.1 Basic, Grok Imagine
   - Image: Nano Banana, Nano Banana Pro, Nano Banana 2, GPT-Image 2
+  - Temp Mail: fakemail.net
 """
 
 import random
@@ -17,15 +18,23 @@ import re
 import base64
 import json
 import threading
+import html as html_lib
 import queue as _queue
 from concurrent.futures import ThreadPoolExecutor
+
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    BeautifulSoup = None
 
 VERIFY_BLACKLIST = set()
 blacklist_lock = threading.Lock()
 
+
 def extract_ip(proxy_url):
     match = re.search(r'(\d+\.\d+\.\d+\.\d+)', proxy_url)
     return match.group(1) if match else proxy_url
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # MODEL KONFİGÜRASYONLARI
@@ -141,56 +150,186 @@ def get_video_params(frontend_model):
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# OD2.IN TEMP EMAIL
+# FAKEMAIL.NET TEMP EMAIL
 # ══════════════════════════════════════════════════════════════════════════════
 
+FAKEMAIL_BASE = "https://www.fakemail.net"
+
+_FAKEMAIL_BASE_HEADERS = {
+    "accept": (
+        "text/html,application/xhtml+xml,application/xml;q=0.9,"
+        "image/avif,image/webp,image/apng,*/*;q=0.8,"
+        "application/signed-exchange;v=b3;q=0.7"
+    ),
+    "accept-language": "tr-TR,tr;q=0.9",
+    "sec-ch-ua": '"Chromium";v="146", "Not-A.Brand";v="24", "Google Chrome";v="146"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": '"Windows"',
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "none",
+    "sec-fetch-user": "?1",
+    "upgrade-insecure-requests": "1",
+    "user-agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
+    ),
+}
+
+_FAKEMAIL_AJAX_HEADERS = {
+    "accept": "application/json, text/javascript, */*; q=0.01",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-requested-with": "XMLHttpRequest",
+    "referer": f"{FAKEMAIL_BASE}/",
+}
+
+
 class eTemp:
+    """fakemail.net tabanlı geçici mail istemcisi.
+
+    Mailbox, HTTP session cookie'sine bağlıdır: adresi üreten instance ile
+    kodu okuyan instance AYNI olmalıdır. Bu yüzden üretilen her adres sınıf
+    seviyesindeki registry'ye kaydedilir; `eTemp.for_email(adres)` ile geri
+    alınabilir.
+    """
+
+    _registry = {}
+    _registry_lock = threading.Lock()
+
+    def __init__(self):
+        self.session = requests.Session()
+        self.session.headers.update(_FAKEMAIL_BASE_HEADERS)
+        self.csrf_token = None
+        self.email = None
+        self._seen_ids = set()
+
+    # ── Registry ──────────────────────────────────────────────────────────
+    @classmethod
+    def for_email(cls, email):
+        """Daha önce bu adresi üretmiş instance'ı döndürür (yoksa None)."""
+        with cls._registry_lock:
+            return cls._registry.get((email or "").strip().lower())
+
+    def release(self):
+        """Mailbox'ı registry'den düşürür ve session'ı kapatır."""
+        with self._registry_lock:
+            self._registry.pop((self.email or "").strip().lower(), None)
+        try:
+            self.session.close()
+        except Exception:
+            pass
+
+    # ── Yardımcı ──────────────────────────────────────────────────────────
     def random_box(self, length=10):
         chars = string.ascii_lowercase + string.digits
         return "".join(random.choice(chars) for _ in range(length))
 
-    def getEmail(self):
-        box = self.random_box(15)
-        return f"{box}@tm.od2.in"
+    # ── Adres üretimi ─────────────────────────────────────────────────────
+    def _bootstrap(self):
+        r = self.session.get(
+            f"{FAKEMAIL_BASE}/", headers=_FAKEMAIL_BASE_HEADERS, timeout=15
+        )
+        m = re.search(r'const\s+CSRF\s*=\s*"([a-f0-9]+)"', r.text)
+        if not m:
+            raise RuntimeError("CSRF token bulunamadı")
+        self.csrf_token = m.group(1)
+        self.session.headers.update(_FAKEMAIL_AJAX_HEADERS)
 
-    def getVerificationCode(self, mail, timeout=30):
-        """od2.in üzerinden gelen 6 haneli doğrulama kodunu çeker."""
-        box = mail.split('@')[0]
-        
-        for _ in range(timeout):
+    def getEmail(self):
+        """Yeni bir geçici adres alır. Başarısızsa None döner."""
+        for attempt in range(1, 4):
             try:
-                url = "https://od2.in/api/get-email"
-                params = {"id": box}
-                headers = {
-                    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                    "accept": "*/*",
-                    "referer": f"https://od2.in/temp-mail?id={box}",
-                }
-                
-                r = requests.get(url, params=params, headers=headers, timeout=10)
-                if r.status_code == 200:
-                    inbox = r.json()
-                    if inbox and isinstance(inbox, list) and len(inbox) > 0:
-                        mail_id = inbox[0]["_id"]
-                        
-                        r_msg = requests.get(url, params={"emailId": mail_id}, headers=headers, timeout=10)
-                        if r_msg.status_code == 200:
-                            msg = r_msg.json()
-                            
-                            subject = (msg.get("subject") or "").lower()
-                            from_text = (msg.get("from", {}).get("text") or "").lower()
-                            text = (msg.get("text") or "") + "\n" + (msg.get("html") or "")
-                            
-                            if "yolly" in subject or "yolly" in from_text or "verification" in subject or "code" in subject or "yolly" in text.lower():
-                                otp = re.search(r"\b(\d{6})\b", text)
-                                if otp:
-                                    return otp.group(1)
+                self._bootstrap()
+                r = self.session.get(
+                    f"{FAKEMAIL_BASE}/index/index",
+                    params={"csrf_token": self.csrf_token},
+                    timeout=15,
+                )
+                data = json.loads(r.content.decode("utf-8-sig"))
+                email = (data.get("email") or "").strip()
+                if email:
+                    self.email = email
+                    with self._registry_lock:
+                        self._registry[email.lower()] = self
+                    print(f"[+] Temp mail alındı: {email}")
+                    return email
+                print(f"[-] fakemail.net adres döndürmedi ({attempt}/3)")
             except Exception as e:
-                print(f"[-] od2.in API hatası: {e}")
-                
+                print(f"[-] fakemail.net adres hatası ({attempt}/3): {e}")
             time.sleep(2)
         return None
 
+    # ── Inbox ─────────────────────────────────────────────────────────────
+    def _refresh(self):
+        r = self.session.get(f"{FAKEMAIL_BASE}/index/refresh", timeout=15)
+        if r.status_code != 200:
+            return []
+        msgs = json.loads(r.content.decode("utf-8-sig"))
+        return msgs if isinstance(msgs, list) else []
+
+    def flush_inbox(self):
+        """Kutudaki mevcut mailleri 'görülmüş' işaretler.
+        Yeni kod istemeden önce çağır: eski kodların yakalanmasını engeller.
+        """
+        try:
+            for msg in self._refresh():
+                mid = msg.get("id")
+                if mid is not None:
+                    self._seen_ids.add(mid)
+        except Exception as e:
+            print(f"[-] Inbox temizleme hatası: {e}")
+
+    @staticmethod
+    def _html_to_text(raw):
+        if BeautifulSoup:
+            return BeautifulSoup(raw, "html.parser").get_text(" ")
+        raw = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", raw)
+        return html_lib.unescape(re.sub(r"(?s)<[^>]+>", " ", raw))
+
+    def _read_message(self, msg_id):
+        r = self.session.get(f"{FAKEMAIL_BASE}/email/id/{msg_id}", timeout=15)
+        if r.status_code != 200:
+            return ""
+        return r.text
+
+    def getVerificationCode(self, mail=None, timeout=30):
+        """Yolly'den gelen 6 haneli doğrulama kodunu döndürür.
+
+        timeout: 2 saniye aralıklı deneme sayısı.
+        """
+        if mail and self.email and mail.strip().lower() != self.email.strip().lower():
+            print(f"[-] Bu instance {self.email} mailbox'ına bağlı, {mail} okunamaz.")
+            return None
+
+        for _ in range(timeout):
+            try:
+                for msg in self._refresh():
+                    mid = msg.get("id")
+                    if mid is None or mid in self._seen_ids:
+                        continue
+
+                    subject = (msg.get("predmet") or "").lower()
+                    sender = (msg.get("od") or msg.get("odkoho") or "").lower()
+                    raw = self._read_message(mid)
+                    body = self._html_to_text(raw)
+                    haystack = f"{subject} {sender} {body}".lower()
+
+                    keywords = ("yolly", "verification", "code", "doğrulama")
+                    if not any(k in haystack for k in keywords):
+                        self._seen_ids.add(mid)
+                        continue
+
+                    otp = re.search(r"\b(\d{6})\b", body)
+                    if otp:
+                        self._seen_ids.add(mid)
+                        return otp.group(1)
+            except Exception as e:
+                print(f"[-] fakemail.net API hatası: {e}")
+
+            time.sleep(2)
+        return None
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -222,7 +361,9 @@ def fetch_proxies():
 def test_proxy(proxy_url, test_url="https://www.yolly.ai", timeout=5):
     """Proxy'nin Yolly'ye ulaşabildiğini test eder."""
     try:
-        r = requests.get(test_url, proxies={"http": proxy_url, "https": proxy_url}, timeout=timeout)
+        r = requests.get(
+            test_url, proxies={"http": proxy_url, "https": proxy_url}, timeout=timeout
+        )
         return r.status_code < 500
     except Exception:
         return False
@@ -318,9 +459,20 @@ def login_yolly(email, password=None):
     Password parameter is ignored (Yolly uses email-only verification).
     Proxy is used ONLY for the send-code step.
 
+    NOT: fakemail.net mailbox'ı cookie'ye bağlı olduğu için, `email`
+    bu süreç içinde eTemp.getEmail() ile üretilmiş olmalıdır.
+
     Returns (session, email) on success, (None, None) on failure.
     """
     session = make_yolly_session()
+
+    # 0) Mailbox session'ını registry'den bul
+    temp = eTemp.for_email(email)
+    if not temp:
+        print(f"[-] {email} için aktif fakemail.net mailbox session'ı yok. "
+              f"Adres bu süreçte eTemp.getEmail() ile üretilmelidir.")
+        return None, None
+    temp.flush_inbox()
 
     # 1) Find proxy for send-code
     print(f"[*] Login başlatılıyor: {email}")
@@ -347,19 +499,18 @@ def login_yolly(email, password=None):
         print(f"[-] Send code hatası ({email}): {e}")
         return None, None
 
-    # 3) Wait and check Spamok — retry up to 3 times with 15s waits
-    temp = eTemp()
+    # 3) Wait and check inbox — retry up to 3 times with 15s waits
     code = None
     for attempt in range(1, 4):
-        print(f"[*] {attempt}. deneme: 15 saniye bekleniyor (eski kodlar temizlensin)...")
+        print(f"[*] {attempt}. deneme: 15 saniye bekleniyor...")
         time.sleep(15)
-        print(f"[*] Spamok kutusu kontrol ediliyor ({email})...")
+        print(f"[*] fakemail.net kutusu kontrol ediliyor ({email})...")
         code = temp.getVerificationCode(email, timeout=15)
         if code:
             print(f"[+] Doğrulama kodu bulundu: {code}")
             break
         if attempt < 3:
-            print(f"[-] Kod bulunamadı, tekrar deneniyor...")
+            print("[-] Kod bulunamadı, tekrar deneniyor...")
         else:
             print(f"[-] Doğrulama kodu 3 denemede de alınamadı ({email})")
             return None, None
@@ -585,7 +736,7 @@ def create_image(session, prompt, yolly_model, aspect_ratio, resolution=None,
             return None
         task_id = res.json().get("id")
         if not task_id:
-            print(f"[-] Image task ID alınamadı")
+            print("[-] Image task ID alınamadı")
             return None
         return task_id
     except Exception as e:
@@ -628,6 +779,10 @@ def poll_image(session, task_id, shutdown_event=None,
     return "timeout", None
 
 
+# ══════════════════════════════════════════════════════════════════════════════
+# ON-THE-FLY ACCOUNT CREATION
+# ══════════════════════════════════════════════════════════════════════════════
+
 def create_and_login_new_account(max_attempts=30):
     """
     Creates a new account on the fly like yollyAIProxy.py.
@@ -636,9 +791,16 @@ def create_and_login_new_account(max_attempts=30):
     """
     for attempt_num in range(1, max_attempts + 1):
         print(f"[*] Hesap oluşturma denemesi {attempt_num}/{max_attempts}...")
+        temp = None
         try:
             temp = eTemp()
             email = temp.getEmail()
+            if not email:
+                print("[-] Temp mail alınamadı, yeni deneme.")
+                temp.release()
+                continue
+            temp.flush_inbox()
+
             session = make_yolly_session()
 
             print(f"[*] On-the-fly hesap oluşturuluyor: {email}")
@@ -647,6 +809,7 @@ def create_and_login_new_account(max_attempts=30):
             sc_proxy = find_working_proxy(max_workers=30, for_verify=False)
             if not sc_proxy:
                 print("[-] Çalışan proxy bulunamadı (send-code)!")
+                temp.release()
                 continue
 
             send_code_url = "https://www.yolly.ai/api/auth/send-code"
@@ -687,20 +850,23 @@ def create_and_login_new_account(max_attempts=30):
 
             if not send_ok:
                 print("[-] Send-code başarısız oldu.")
+                temp.release()
                 continue
 
-            # 2) Doğrulama kodu al (od2.in)
+            # 2) Doğrulama kodu al (fakemail.net)
             code = None
             for attempt in range(1, 4):
-                print(f"[*] od2.in kutusu kontrol ediliyor ({email})...")
+                print(f"[*] fakemail.net kutusu kontrol ediliyor ({email})...")
                 time.sleep(15)
                 code = temp.getVerificationCode(email, timeout=15)
                 if code:
+                    print(f"[+] Doğrulama kodu bulundu: {code}")
                     break
                 print(f"[-] Kod bulunamadı ({email}), tekrar deneniyor...")
 
             if not code:
                 print(f"[-] Doğrulama kodu alınamadı ({email})")
+                temp.release()
                 continue
 
             # 3) CSRF token al (proxy'siz)
@@ -713,15 +879,17 @@ def create_and_login_new_account(max_attempts=30):
                         break
                 except Exception:
                     pass
-            
+
             if not csrf_token:
                 print(f"[-] CSRF token alınamadı ({email})")
+                temp.release()
                 continue
 
             # 4) Verify Callback (TEMİZ proxy ile)
             verify_proxy = find_working_proxy(max_workers=30, for_verify=True)
             if not verify_proxy:
                 print("[-] Temiz verify proxy bulunamadı!")
+                temp.release()
                 continue
 
             verify_url = "https://www.yolly.ai/api/auth/callback/verification-code?"
@@ -762,6 +930,7 @@ def create_and_login_new_account(max_attempts=30):
 
             if not verify_success:
                 print("[-] Verify başarısız.")
+                temp.release()
                 continue
 
             # 5) Kredi kontrolü
@@ -777,6 +946,7 @@ def create_and_login_new_account(max_attempts=30):
             # 30 kredi kontrolü: yollyAIProxy.py'deki gibi 30 kredi olmalı!
             if credits != 30:
                 print(f"[-] Kredi 30 değil ({credits}), yeni hesap denenecek.")
+                temp.release()
                 continue
 
             print(f"[+] Başarılı hesap oluşturuldu: {email} (Kredi: {credits})")
@@ -784,6 +954,8 @@ def create_and_login_new_account(max_attempts=30):
 
         except Exception as e:
             print(f"[-] Hesap oluşturulurken beklenmeyen hata oluştu: {e}")
+            if temp:
+                temp.release()
             continue
 
     print(f"[-] {max_attempts} denemede 30 kredilik hesap oluşturulamadı!")
