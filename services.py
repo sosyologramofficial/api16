@@ -79,8 +79,8 @@ MODELS = {
         "label": "Grok Imagine",
         "type": "video",
         "aspect_ratios": ["16:9", "9:16", "1:1", "2:3", "3:2"],
-        "resolutions": ["480p", "720p"],
-        "durations": ["6", "10"],
+        "resolutions": ["720p", "480p"],
+        "durations": ["10", "6"],
         "supports_start_end_frame": False,
         "extra_params": {
             "negativePrompt": "",
