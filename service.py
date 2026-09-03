@@ -1,7 +1,7 @@
 """
 Service Module - Self-Contained MyEdit Online Integration
 Integrates with myEditOnline services.
-Uses Catchmail temp mail for on-the-fly account registration and verification.
+Uses temp-mail.asia temp mail for on-the-fly account registration and verification.
 Saves created accounts directly to the database.
 """
 import os
@@ -118,7 +118,7 @@ IMAGE_MODELS_CONFIG = {
         "vendor": "Google",
         "actionId_prefix": "genimage_1_img_google_gemini3.1flash",
         "promptLength": 2500,
-        "ref_img_limit": 5,
+        "ref_img_limit": 14,
         "supported_resolutions": ["1K", "2K", "4K"],
         "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
         "credits": {
@@ -132,7 +132,7 @@ IMAGE_MODELS_CONFIG = {
         "vendor": "Google",
         "actionId_prefix": "genimage_1_img_google_gemini3pro",
         "promptLength": 2500,
-        "ref_img_limit": 5,
+        "ref_img_limit": 14,
         "supported_resolutions": ["1K", "2K", "4K"],
         "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
         "credits": {
@@ -146,7 +146,7 @@ IMAGE_MODELS_CONFIG = {
         "vendor": "OpenAI",
         "actionId_prefix": "genimage_1_img_openai_gptimage2",
         "promptLength": 8000,
-        "ref_img_limit": 5,
+        "ref_img_limit": 16,
         "supported_resolutions": ["1K", "2K"],
         "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
         "credits": {
@@ -184,154 +184,57 @@ IMAGE_MODELS_CONFIG["GPT_IMAGE_2"] = IMAGE_MODELS_CONFIG["gpt_image_2"]
 # VIDEO MODEL CONFIGURATIONS
 # ==============================================================================
 VIDEO_MODELS_CONFIG = {
-    "sora_2_std": {
-        "name": "Sora 2",
-        "model": "sora-2",
-        "vendor": "OpenAI",
-        "supported_modes": ["ImageToVideo"],
-        "supported_frame_modes": ["single"],
-        "supported_resolutions": ["720p"],
-        "supported_aspect_ratios": ["16:9", "9:16"],
-        "supported_durations": [8],
-        "action_id": "genvideo_1_sec_openai_sora2_{sound}_720p",
-        "action_id_i2v": "genvideo_1_sec_openai_custom_sora2std_{sound}_{frame_mode}",
-        "credit_map": {
-            ("none", "720p"): 6,
-            ("vendor", "720p"): 6,
-        },
-        "credit": 6,
-        "mode": "std",
-        "default_sound": "vendor",
-    },
-    "seedance_2_0_mini": {
-        "name": "Seedance 2.0",
-        "model": "dreamina-seedance-2-0-mini-260615",
-        "vendor": "BytePlus",
-        "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
-        "supported_frame_modes": ["single", "startend"],
-        "supported_resolutions": ["720p"],
-        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
-        "supported_durations": [10],
-        "supported_resolutions_by_mode": {
-            "ImageToVideo": ["720p"],
-            "TextToVideo": ["720p"],
-            "ReferenceToVideo": ["720p"],
-        },
-        "supported_durations_by_mode": {
-            "ImageToVideo": [10],
-            "TextToVideo": [10],
-            "ReferenceToVideo": [10],
-        },
-        "action_id": "genvideo_1_sec_bytedance_seedance2.0mini_{sound}_{resolution}",
-        "action_id_i2v": "genvideo_1_sec_bytedance_custom_seedance2.0mini_{sound}_{frame_mode}_{resolution}",
-        "credit_map": {
-            ("none", "720p"): 4,
-            ("vendor", "720p"): 4,
-        },
-        "credit": 2,
-        "mode": "mini",
-        "reference_media_limit": {
-            "supported_types": ["image"],
-            "max_images": 5,
-            "max_videos": 0,
-            "max_total": 5,
-        },
-    },
-    "gemini_omni_flash": {
-        "name": "Gemini Omni Flash",
-        "model": "gemini-omni-flash-preview",
+    "veo_3_1_lite": {
+        "name": "Veo 3.1 Lite",
+        "model": "veo-3.1-lite-generate-001",
         "vendor": "Google",
-        "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
-        "supported_frame_modes": ["single"],
-        "supported_resolutions": ["720p"],
-        "supported_aspect_ratios": ["16:9", "9:16"],
-        "supported_durations": [10],
-        "action_id": "genvideo_1_sec_google_geminiomniflash_{sound}_{resolution}",
-        "action_id_i2v": "genvideo_1_sec_google_custom_geminiomniflash_{sound}_{frame_mode}_{resolution}",
-        "credit_map": {
-            ("none", "720p"): 5,
-            ("vendor", "720p"): 5,
-        },
-        "credit": 5,
-        "mode": "std",
-        "default_sound": "vendor",
-        "reference_media_limit": {
-            "supported_types": ["image"],
-            "max_images": 5,
-            "max_videos": 0,
-            "max_total": 5,
-        },
-    },
-    "kling_o3": {
-        "name": "Kling 3.0",
-        "model": "kling-v3-omni",
-        "vendor": "Kling",
-        "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
+        "supported_modes": ["TextToVideo", "ImageToVideo"],
         "supported_frame_modes": ["single", "startend"],
-        "supported_resolutions": ["720p"],
-        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
-        "supported_durations": [10],
+        "supported_resolutions": ["1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16"],
+        "supported_durations": [4, 6, 8],
         "supported_resolutions_by_mode": {
-            "ImageToVideo": ["720p"],
-            "TextToVideo": ["720p"],
-            "ReferenceToVideo": ["720p"],
+            "ImageToVideo": ["1080p"],
+            "TextToVideo": ["720p", "1080p"],
         },
         "supported_durations_by_mode": {
-            "ImageToVideo": [10],
-            "TextToVideo": [10],
-            "ReferenceToVideo": [10],
+            "ImageToVideo": [4, 6, 8],
+            "TextToVideo": [4, 8],
         },
-        "action_id": "genvideo_1_sec_kling_o3std_{sound}_720p",
-        "action_id_overrides": {
-            "720p": "genvideo_1_sec_kling_o3std_{sound}_720p",
-        },
-        "action_id_i2v_overrides": {
-            "720p": "genvideo_1_sec_kling_custom_o3std_{sound}_{frame_mode}_720p",
-        },
+        "action_id": "genvideo_1_sec_google_veo3.1lite_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_google_custom_veo3.1lite_{sound}_{frame_mode}_{resolution}",
         "credit_map": {
-            ("none", "720p"): 4,
-            ("vendor", "720p"): 5,
+            ("ImageToVideo", "none", "720p"): 3,
+            ("ImageToVideo", "none", "1080p"): 5,
+            ("ImageToVideo", "vendor", "720p"): 3,
+            ("ImageToVideo", "vendor", "1080p"): 5,
+            ("TextToVideo", "none", "720p"): 2,
+            ("TextToVideo", "none", "1080p"): 3,
+            ("TextToVideo", "vendor", "720p"): 3,
+            ("TextToVideo", "vendor", "1080p"): 5,
+            ("none", "720p"): 2,
+            ("none", "1080p"): 3,
+            ("vendor", "720p"): 3,
+            ("vendor", "1080p"): 5,
         },
-        "credit": 5,
+        "credit": 3,
         "mode": "std",
-        "reference_media_limit": {
-            "supported_types": ["image"],
-            "max_images": 5,
-            "max_videos": 0,
-            "max_total": 5,
-        },
-    },
+    }
 }
 
 # Video Model ID Mapping (Frontend / API ID -> Backend Model ID)
 VIDEO_MODEL_MAPPING = {
-    "sora_2_std": "sora_2_std",
-    "SORA_2_STD": "sora_2_std",
-    "SORA_2": "sora_2_std",
-    "sora_2": "sora_2_std",
-    "sora-2": "sora_2_std",
-    "seedance_2_0_mini": "seedance_2_0_mini",
-    "SEEDANCE_2_0_MINI": "seedance_2_0_mini",
-    "SEEDANCE_MINI": "seedance_2_0_mini",
-    "seedance_mini": "seedance_2_0_mini",
-    "seedance": "seedance_2_0_mini",
-    "gemini_omni_flash": "gemini_omni_flash",
-    "GEMINI_OMNI_FLASH": "gemini_omni_flash",
-    "gemini_omni": "gemini_omni_flash",
-    "GEMINI_OMNI": "gemini_omni_flash",
-    "kling_o3": "kling_o3",
-    "KLING_O3": "kling_o3",
-    "kling3": "kling_o3",
-    "kling_3": "kling_o3",
+    "VEO_3_1": "veo_3_1_lite",
+    "GROK_VIDEO": "veo_3_1_lite",
+    # Fallback / case-insensitive aliases
+    "veo_3_1_lite": "veo_3_1_lite",
+    "veo_3_1": "veo_3_1_lite",
+    "grok_video": "veo_3_1_lite",
 }
 
 # Direct mapping in VIDEO_MODELS_CONFIG for safety
-VIDEO_MODELS_CONFIG["SORA_2_STD"] = VIDEO_MODELS_CONFIG["sora_2_std"]
-VIDEO_MODELS_CONFIG["SORA_2"] = VIDEO_MODELS_CONFIG["sora_2_std"]
-VIDEO_MODELS_CONFIG["SEEDANCE_2_0_MINI"] = VIDEO_MODELS_CONFIG["seedance_2_0_mini"]
-VIDEO_MODELS_CONFIG["SEEDANCE_MINI"] = VIDEO_MODELS_CONFIG["seedance_2_0_mini"]
-VIDEO_MODELS_CONFIG["GEMINI_OMNI_FLASH"] = VIDEO_MODELS_CONFIG["gemini_omni_flash"]
-VIDEO_MODELS_CONFIG["KLING_O3"] = VIDEO_MODELS_CONFIG["kling_o3"]
+VIDEO_MODELS_CONFIG["VEO_3_1"] = VIDEO_MODELS_CONFIG["veo_3_1_lite"]
+VIDEO_MODELS_CONFIG["GROK_VIDEO"] = VIDEO_MODELS_CONFIG["veo_3_1_lite"]
 
 MODELS = {} # Compatibility mapping
 
@@ -347,56 +250,68 @@ AVAILABLE_MODELS = {
             "supported_resolutions": ["1K"],
             "default_size": "1:1",
             "default_resolution": "1K",
-            "max_prompt_length": 2500,
-            "credit": 15
+            "max_prompt_length": 2500
         },
         {
             "id": "NANO_BANANA_2",
             "name": "Nano Banana 2",
-            "description": "Nano Banana 2 by Google - Supports up to 5 Reference Images",
+            "description": "Nano Banana 2 by Google - Supports up to 14 Reference Images",
             "supports_reference_images": True,
             "max_reference_images": 5,
             "supported_sizes": ["1:1", "16:9", "9:16", "4:3", "3:4"],
             "supported_resolutions": ["1K", "2K", "4K"],
             "default_size": "1:1",
             "default_resolution": "1K",
-            "max_prompt_length": 2500,
-            "credit": 15
+            "max_prompt_length": 2500
         },
         {
             "id": "NANO_BANANA_PRO",
             "name": "Nano Banana Pro",
-            "description": "Nano Banana Pro by Google - Supports up to 5 Reference Images",
+            "description": "Nano Banana Pro by Google - Supports up to 14 Reference Images",
             "supports_reference_images": True,
             "max_reference_images": 5,
             "supported_sizes": ["1:1", "16:9", "9:16", "4:3", "3:4"],
             "supported_resolutions": ["1K", "2K", "4K"],
             "default_size": "1:1",
             "default_resolution": "1K",
-            "max_prompt_length": 2500,
-            "credit": 15
+            "max_prompt_length": 2500
         },
         {
             "id": "GPT_IMAGE_2",
             "name": "GPT-Image-2",
-            "description": "GPT-Image-2 by OpenAI - Supports up to 5 Reference Images",
+            "description": "GPT-Image-2 by OpenAI - Supports up to 16 Reference Images",
             "supports_reference_images": True,
             "max_reference_images": 5,
             "supported_sizes": ["1:1", "16:9", "9:16", "4:3", "3:4"],
             "supported_resolutions": ["1K", "2K"],
             "default_size": "1:1",
             "default_resolution": "1K",
-            "max_prompt_length": 8000,
-            "credit": 15
+            "max_prompt_length": 8000
         }
     ],
     "video": [
         {
-            "id": "sora_2_std",
-            "name": "Sora 2",
-            "description": "Sora 2 by OpenAI - Supports Start Frame",
+            "id": "VEO_3_1",
+            "name": "Veo 3.1",
+            "description": "Veo 3.1 - Supports Start/End Frame",
             "supports_start_frame": True,
-            "supports_end_frame": False,
+            "supports_end_frame": True,
+            "supports_reference_images": False,
+            "max_reference_images": 0,
+            "supported_sizes": ["16:9", "9:16"],
+            "supported_durations": [4, 6, 8],
+            "supported_resolutions": ["720p", "1080p"],
+            "default_size": "16:9",
+            "default_resolution": "1080p",
+            "default_duration": 4,
+            "max_prompt_length": 4000
+        },
+        {
+            "id": "GROK_VIDEO",
+            "name": "Grok Video",
+            "description": "Grok Video - Supports Start/End Frame",
+            "supports_start_frame": True,
+            "supports_end_frame": True,
             "supports_reference_images": False,
             "max_reference_images": 0,
             "supported_sizes": ["16:9", "9:16"],
@@ -405,65 +320,7 @@ AVAILABLE_MODELS = {
             "default_size": "16:9",
             "default_resolution": "720p",
             "default_duration": 8,
-            "max_prompt_length": 2000,
-            "credit": 50,
-            "supported_modes": ["ImageToVideo"],
-            "supported_frame_modes": ["single"],
-            "requires_start_frame": True
-        },
-        {
-            "id": "seedance_2_0_mini",
-            "name": "Seedance 2.0",
-            "description": "Seedance 2.0 by BytePlus - Supports Start/End Frame, up to 5 Reference Images",
-            "supports_start_frame": True,
-            "supports_end_frame": True,
-            "supports_reference_images": True,
-            "max_reference_images": 5,
-            "supported_sizes": ["16:9", "9:16", "1:1"],
-            "supported_durations": [10],
-            "supported_resolutions": ["720p"],
-            "default_size": "16:9",
-            "default_resolution": "720p",
-            "default_duration": 10,
-            "max_prompt_length": 4900,
-            "credit": 50,
-            "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"]
-        },
-        {
-            "id": "gemini_omni_flash",
-            "name": "Gemini Omni Flash",
-            "description": "Gemini Omni Flash by Google - Supports Start Frame, up to 5 Reference Images",
-            "supports_start_frame": True,
-            "supports_end_frame": False,
-            "supports_reference_images": True,
-            "max_reference_images": 5,
-            "supported_sizes": ["16:9", "9:16"],
-            "supported_durations": [10],
-            "supported_resolutions": ["720p"],
-            "default_size": "16:9",
-            "default_resolution": "720p",
-            "default_duration": 10,
-            "max_prompt_length": 3500,
-            "credit": 55,
-            "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"]
-        },
-        {
-            "id": "kling_o3",
-            "name": "Kling 3.0",
-            "description": "Kling 3.0 by Kling - Supports Start/End Frame, up to 5 Reference Images",
-            "supports_start_frame": True,
-            "supports_end_frame": True,
-            "supports_reference_images": True,
-            "max_reference_images": 5,
-            "supported_sizes": ["16:9", "9:16", "1:1"],
-            "supported_durations": [10],
-            "supported_resolutions": ["720p"],
-            "default_size": "16:9",
-            "default_resolution": "720p",
-            "default_duration": 10,
-            "max_prompt_length": 2500,
-            "credit": 55,
-            "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"]
+            "max_prompt_length": 4000
         }
     ],
     "tts": [],
@@ -507,93 +364,363 @@ def make_proxy_url(raw_url):
     return f"/api/proxy?url={urllib.parse.quote(raw_url, safe='')}"
 
 
+from bs4 import BeautifulSoup
+
 # ==============================================================================
-# MYEDIT ONLINE ALTYAPI VE KRIPTOGRAFİK YARDIMCILAR (Catchmail)
+# MYEDIT ONLINE ALTYAPI VE KRIPTOGRAFİK YARDIMCILAR (temp-mail.asia)
 # ==============================================================================
 
-CATCHMAIL_CTX = ssl.create_default_context()
-CATCHMAIL_CTX.check_hostname = False
-CATCHMAIL_CTX.verify_mode = ssl.CERT_NONE
+# İSTEDİĞİN DOMAİNLERİ BURAYA GİREBİLİRSİN
+# CyberLink ile stabil çalıştığı test edilen domainler listenin başındadır.
+WHITELIST_DOMAINS = [
+    "umail.asia",
+    "cmail.asia",
+    "tempmailt.com",
+    "t-mail.asia",
+    "okyre.com",
+    "asia.banglatip.com",
+    "pmail.asia",
+    "1mail.edu.pl",
+    "asia.1maill.com",
+    "bd.1maill.com",
+    "in.1maill.com",
+    "bd.5secmail.com",
+    "in.5secmail.com",
+    "ng.5secmail.com",
+    "asia.5secmail.com",
+]
+
+POLL_COMPONENTS = [
+    "frontend.components.action",
+    "frontend.components.token-login",
+    "frontend.components.check-mail",
+    "frontend.components.inbox-message",
+]
+
+
+def generate_random_username(length: int = 10) -> str:
+    """Belirtilen uzunlukta harf ve rakamlardan oluşan rastgele bir kullanıcı adı üretir."""
+    chars = string.ascii_lowercase + string.digits
+    return "".join(random.choices(chars, k=length))
+
+
+# ==============================================================================
+# TEMP MAIL PROXY AYARLARI (Render.com temp-mail.asia 403 Engeli İcin)
+# ==============================================================================
+# Render.com sunucularında temp-mail.asia IP engeline (403 Forbidden) takıldığı
+# için sadece temp mail isteklerine özel bu proxy alanı tanımlanmıştır.
+# Temp mail dışındaki CyberLink, resim, video vb. hiçbir istek bu proxy'yi KULLANMAZ.
+#
+# TEMP_MAIL_PROXY_MODE (Proxy Durumu):
+#   1 -> Temp mail istekleri Webshare proxy üzerinden geçer (Render.com için 1 yapın).
+#   0 -> Proxy devre dışı kalır, doğrudan sunucu IP'si üzerinden bağlanır.
+TEMP_MAIL_PROXY_MODE = 1
+
+TEMP_MAIL_PROXY_CONFIG = {
+    "http": "http://nrrbciri-1:5cauzsujeluf@p.webshare.io:80",
+    "https": "http://nrrbciri-1:5cauzsujeluf@p.webshare.io:80",
+}
+
+
+def apply_temp_mail_proxy(session: requests.Session):
+    """Sadece TempMailClient oturumuna proxy uygular.
+    
+    İleride proxy'yi tamamen kaldırmak isterseniz bu bloğu ve TempMailClient
+    içindeki apply_temp_mail_proxy(self.session) satırını silmeniz yeterlidir.
+    """
+    if TEMP_MAIL_PROXY_MODE == 1 and TEMP_MAIL_PROXY_CONFIG:
+        session.proxies.update(TEMP_MAIL_PROXY_CONFIG)
+# ==============================================================================
+
 
 class TempMailClient:
-    """Catchmail (api.catchmail.io) Temp Mail Entegrasyonu"""
-    BASE = "https://api.catchmail.io"
+    """temp-mail.asia Livewire Entegrasyonu"""
 
-    def __init__(self, domain: str = "catchmail.io"):
+    BASE_URL = "https://temp-mail.asia"
+
+    def __init__(self, domain: str = None):
         self.domain = domain
         self.box = None
         self.email = None
+        self.session = requests.Session()
+        apply_temp_mail_proxy(self.session)
+        self.csrf = None
+        self.components = {}
+        self.lw_headers = {}
         self._seen_ids = set()
 
-    def get_email(self, length: int = 10, domain: str = "catchmail.io") -> str:
+    def get_email(self, length: int = 10, domain: str = None) -> str:
+        """Yeni bir geçici e-posta adresi üretir ve temp-mail.asia oturumuna bağlar."""
         if domain:
             self.domain = domain
-        self.box = "".join(random.choices(string.ascii_lowercase + string.digits, k=length))
-        self.email = f"{self.box}@{self.domain}"
-        print(f"[Temp Mail] Created: {self.email}")
+        elif not self.domain and WHITELIST_DOMAINS:
+            self.domain = WHITELIST_DOMAINS[0]
+
+        init_headers = {
+            "Accept": (
+                "text/html,application/xhtml+xml,application/xml;q=0.9,"
+                "image/avif,image/webp,image/apng,*/*;q=0.8"
+            ),
+            "Accept-Encoding": "gzip, deflate",
+            "Accept-Language": "tr-TR,tr;q=0.9",
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/147.0.0.0 Safari/537.36"
+            ),
+            "upgrade-insecure-requests": "1",
+        }
+
+        resp = self.session.get(f"{self.BASE_URL}/", headers=init_headers, timeout=30)
+        resp.raise_for_status()
+        html = resp.text
+
+        csrf_match = re.search(r'data-csrf=["\']([^"\']+)["\']', html)
+        email_match = re.search(r"const email\s*=\s*'([^']+)'", html)
+        self.csrf = csrf_match.group(1) if csrf_match else None
+        default_email = email_match.group(1) if email_match else None
+
+        soup = BeautifulSoup(html, "html.parser")
+        self.components = {}
+        for el in soup.find_all(attrs={"wire:snapshot": True}):
+            raw_snap = el.get("wire:snapshot", "")
+            try:
+                snap_data = json.loads(raw_snap)
+                name = snap_data.get("memo", {}).get("name", "")
+                if name:
+                    self.components[name] = {"snapshot": raw_snap, "name": name}
+            except Exception:
+                pass
+
+        self.lw_headers = {
+            "Accept": "*/*",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept-Language": "tr-TR,tr;q=0.9",
+            "Content-Type": "application/json",
+            "Origin": self.BASE_URL,
+            "Referer": f"{self.BASE_URL}/",
+            "User-Agent": init_headers["User-Agent"],
+            "x-livewire": "1",
+            "x-csrf-token": self.csrf,
+        }
+
+        if self.domain:
+            self.box = generate_random_username(length)
+            target_email = f"{self.box}@{self.domain}"
+
+            check_mail_comp = self.components.get("frontend.components.check-mail")
+            if check_mail_comp and self.csrf:
+                change_payload = {
+                    "_token": self.csrf,
+                    "components": [
+                        {
+                            "snapshot": check_mail_comp["snapshot"],
+                            "updates": {
+                                "username": self.box,
+                                "domain": self.domain,
+                            },
+                            "calls": [
+                                {
+                                    "method": "checkEmailAddress",
+                                    "params": [],
+                                    "metadata": {},
+                                }
+                            ],
+                        }
+                    ],
+                }
+                try:
+                    change_resp = self.session.post(
+                        f"{self.BASE_URL}/livewire/update",
+                        headers=self.lw_headers,
+                        json=change_payload,
+                        timeout=30,
+                    )
+                    if change_resp.ok:
+                        for c in change_resp.json().get("components", []):
+                            if c.get("snapshot"):
+                                self.components["frontend.components.check-mail"]["snapshot"] = c["snapshot"]
+                        self.email = target_email
+                    else:
+                        self.email = default_email or target_email
+                except Exception as e:
+                    print(f"[Temp Mail] checkEmailAddress uyarisi: {e}")
+                    self.email = default_email or target_email
+            else:
+                self.email = default_email or target_email
+        else:
+            self.email = default_email
+
+        print(f"[Temp Mail] Olusturuldu: {self.email}")
         return self.email
 
-    def _api(self, path: str, **params):
-        url = f"{self.BASE}{path}?{urllib.parse.urlencode(params)}"
+    def _build_poll_payload(self) -> dict:
+        api_components = []
+        for name in POLL_COMPONENTS:
+            comp = self.components.get(name)
+            if not comp:
+                continue
+
+            if name == "frontend.components.inbox-message":
+                calls = [
+                    {
+                        "method": "__dispatch",
+                        "params": ["syncEmail", {"email": self.email}],
+                        "metadata": {},
+                    },
+                    {
+                        "method": "__dispatch",
+                        "params": ["fetchMessages", {}],
+                        "metadata": {},
+                    },
+                ]
+            else:
+                calls = [
+                    {
+                        "method": "__dispatch",
+                        "params": ["syncEmail", {"email": self.email}],
+                        "metadata": {},
+                    },
+                ]
+            api_components.append(
+                {
+                    "snapshot": comp["snapshot"],
+                    "updates": {},
+                    "calls": calls,
+                }
+            )
+        return {"_token": self.csrf, "components": api_components}
+
+    def _extract_activation_link(self, text: str) -> str:
+        trace_links = re.findall(
+            r'https?://membership\.cyberlink\.com/prog/event/autoedm/trace_mem\.jsp\?[^\s"\'<>]+',
+            text,
+        )
+        for link in trace_links:
+            link = link.replace("&amp;", "&").rstrip("\"'")
+            if any(k in link for k in ["account-activate", "Activate", "active-member"]):
+                return link
+
+        general_links = re.findall(
+            r'https?://[^\s"\'<>]*(?:cyberlink|myedit)[^\s"\'<>]*(?:activate|confirm|verify|token)[^\s"\'<>]*',
+            text,
+            re.IGNORECASE,
+        )
+        for link in general_links:
+            link = link.replace("&amp;", "&").rstrip("\"'")
+            if any(k in link for k in ["activate", "confirm", "verify"]):
+                return link
+
         try:
-            with urllib.request.urlopen(url, timeout=20, context=CATCHMAIL_CTX) as r:
-                return json.loads(r.read() or b"{}")
-        except Exception as e:
-            print(f"[Temp Mail] API hatasi ({path}): {e}")
-            return {}
+            soup = BeautifulSoup(text, "html.parser")
+            for a in soup.find_all("a", href=True):
+                href = a["href"].replace("&amp;", "&").rstrip("\"'")
+                if any(k in href for k in ["trace_mem", "activate", "confirm", "verify", "token"]) and any(
+                    d in href for d in ["cyberlink", "myedit"]
+                ):
+                    return href
+        except Exception:
+            pass
+
+        if trace_links:
+            return trace_links[0].replace("&amp;", "&").rstrip("\"'")
+
+        return None
+
+    def _extract_code(self, text: str) -> str:
+        codes = re.findall(r"\b\d{4,8}\b", text)
+        return codes[0] if codes else None
+
+    def _fetch_message_content(self, msg_id, inbox_snapshot) -> str:
+        view_payload = {
+            "_token": self.csrf,
+            "components": [
+                {
+                    "snapshot": inbox_snapshot,
+                    "updates": {},
+                    "calls": [{"method": "updateView", "params": [msg_id], "metadata": {}}],
+                }
+            ],
+        }
+        view_resp = self.session.post(
+            f"{self.BASE_URL}/livewire/update",
+            headers=self.lw_headers,
+            json=view_payload,
+            timeout=30,
+        )
+        if not view_resp.ok:
+            return ""
+
+        all_text = []
+        for comp_resp in view_resp.json().get("components", []):
+            effects_html = comp_resp.get("effects", {}).get("html", "")
+            if effects_html:
+                all_text.append(effects_html)
+            snap_str = comp_resp.get("snapshot", "")
+            if snap_str:
+                try:
+                    snap = json.loads(snap_str)
+                    msgs = snap.get("data", {}).get("messages", [])
+                    if msgs and isinstance(msgs[0], list):
+                        for group in msgs[0]:
+                            if isinstance(group, list):
+                                for m in group:
+                                    if isinstance(m, dict) and "content" in m:
+                                        all_text.append(m["content"])
+                except Exception:
+                    pass
+        return "\n".join(all_text)
 
     def wait_for_activation_link(self, timeout: int = 60) -> str:
         print(f"[Temp Mail] Gelen kutusu sorgulaniyor ({self.email})...")
         deadline = time.time() + timeout
+        inbox_snapshot = None
 
         while time.time() < deadline:
+            inbox_keys = []
             try:
-                mailbox_data = self._api("/api/v1/mailbox", address=self.email)
-                messages = mailbox_data.get("messages", [])
+                payload = self._build_poll_payload()
+                resp = self.session.post(
+                    f"{self.BASE_URL}/livewire/update",
+                    headers=self.lw_headers,
+                    json=payload,
+                    timeout=20,
+                )
+                if resp.ok:
+                    data = resp.json()
+                    resp_comps = data.get("components", [])
+                    active_names = [n for n in POLL_COMPONENTS if n in self.components]
+
+                    for i, rc in enumerate(resp_comps):
+                        new_snap = rc.get("snapshot", "")
+                        if not new_snap or i >= len(active_names):
+                            continue
+                        target_name = active_names[i]
+                        self.components[target_name]["snapshot"] = new_snap
+
+                        if target_name == "frontend.components.inbox-message":
+                            try:
+                                snap = json.loads(new_snap)
+                                inbox_msgs = snap.get("data", {}).get("inbox_messages", [])
+                                if isinstance(inbox_msgs, list):
+                                    for item in inbox_msgs:
+                                        if isinstance(item, dict) and "keys" in item:
+                                            inbox_keys = item["keys"]
+                                            inbox_snapshot = new_snap
+                            except Exception:
+                                pass
             except Exception as e:
-                print(f"[!] Inbox hatasi: {e}")
-                time.sleep(2)
-                continue
+                print(f"[Temp Mail] Poll uyarisi: {e}")
 
-            if messages:
-                for m in reversed(messages):
-                    msg_id = m.get("id")
-                    if not msg_id or msg_id in self._seen_ids:
-                        continue
+            unseen_keys = [k for k in inbox_keys if k not in self._seen_ids]
+            if unseen_keys:
+                for msg_id in unseen_keys:
                     self._seen_ids.add(msg_id)
-
-                    time.sleep(1)
-                    full = self._api(f"/api/v1/message/{msg_id}", mailbox=self.email)
-                    if not full:
-                        continue
-
-                    subject = full.get("subject") or ""
-                    sender = full.get("from") or ""
-                    body = full.get("body", {})
-                    html_content = body.get("html") or ""
-                    text_content = body.get("text") or re.sub(r"<[^>]+>", "", html_content)
-                    combined_text = (text_content or "") + "\n" + (html_content or "")
-                    print(f"[+] Yeni mail alindi! Kimden: {sender} | Konu: {subject}")
-
-                    # 1. CyberLink EDM Trace linklerinden aktivasyon linkini bul
-                    trace_links = re.findall(r'https?://membership\.cyberlink\.com/prog/event/autoedm/trace_mem\.jsp\?[^\s"\'<>]+', combined_text)
-                    for link in trace_links:
-                        link = link.replace("&amp;", "&")
-                        if "account-activate" in link or "Activate" in link or "active-member" in link:
-                            print(f"  -> Aktivasyon linki bulundu: {link[:80]}...")
-                            return link
-
-                    # 2. Herhangi bir CyberLink trace linki (fallback)
-                    if trace_links:
-                        link = trace_links[0].replace("&amp;", "&")
-                        print(f"  -> Link ayiklandi (trace fallback): {link[:80]}...")
-                        return link
-
-                    # 3. Genel CyberLink / MyEdit aktivasyon linki (fallback)
-                    general_links = re.findall(r'https?://[^\s"\'<>]*(?:cyberlink|myedit)[^\s"\'<>]*(?:activate|confirm|verify|token)[^\s"\'<>]*', combined_text, re.IGNORECASE)
-                    for link in general_links:
-                        link = link.replace("&amp;", "&")
-                        print(f"  -> Link ayiklandi (genel fallback): {link[:80]}...")
+                    print(f"[+] Yeni mail alindi! ID: {msg_id}")
+                    content = self._fetch_message_content(msg_id, inbox_snapshot)
+                    link = self._extract_activation_link(content)
+                    if link:
+                        print(f"  -> Aktivasyon linki bulundu: {link[:80]}...")
                         return link
 
             time.sleep(3)
@@ -601,38 +728,56 @@ class TempMailClient:
         raise TimeoutError("Aktivasyon maili gelmedi!")
 
     def wait_for_code(self, timeout: int = 60) -> str:
-        """Eger dogrulama kodu gerekirse e-postadaki 4-8 haneli sayisal kodu dondurur."""
         print(f"[Temp Mail] Kod bekleniyor ({self.email})...")
         deadline = time.time() + timeout
+        inbox_snapshot = None
 
         while time.time() < deadline:
+            inbox_keys = []
             try:
-                mailbox_data = self._api("/api/v1/mailbox", address=self.email)
-                messages = mailbox_data.get("messages", [])
+                payload = self._build_poll_payload()
+                resp = self.session.post(
+                    f"{self.BASE_URL}/livewire/update",
+                    headers=self.lw_headers,
+                    json=payload,
+                    timeout=20,
+                )
+                if resp.ok:
+                    data = resp.json()
+                    resp_comps = data.get("components", [])
+                    active_names = [n for n in POLL_COMPONENTS if n in self.components]
+
+                    for i, rc in enumerate(resp_comps):
+                        new_snap = rc.get("snapshot", "")
+                        if not new_snap or i >= len(active_names):
+                            continue
+                        target_name = active_names[i]
+                        self.components[target_name]["snapshot"] = new_snap
+
+                        if target_name == "frontend.components.inbox-message":
+                            try:
+                                snap = json.loads(new_snap)
+                                inbox_msgs = snap.get("data", {}).get("inbox_messages", [])
+                                if isinstance(inbox_msgs, list):
+                                    for item in inbox_msgs:
+                                        if isinstance(item, dict) and "keys" in item:
+                                            inbox_keys = item["keys"]
+                                            inbox_snapshot = new_snap
+                            except Exception:
+                                pass
             except Exception as e:
-                print(f"[!] Inbox hatasi: {e}")
-                time.sleep(2)
-                continue
+                print(f"[Temp Mail] Poll uyarisi: {e}")
 
-            if messages:
-                for m in reversed(messages):
-                    msg_id = m.get("id")
-                    if not msg_id or msg_id in self._seen_ids:
-                        continue
+            unseen_keys = [k for k in inbox_keys if k not in self._seen_ids]
+            if unseen_keys:
+                for msg_id in unseen_keys:
                     self._seen_ids.add(msg_id)
-
-                    time.sleep(1)
-                    full = self._api(f"/api/v1/message/{msg_id}", mailbox=self.email)
-                    if not full:
-                        continue
-
-                    body = full.get("body", {})
-                    html_content = body.get("html") or ""
-                    text_content = body.get("text") or re.sub(r"<[^>]+>", "", html_content)
-                    codes = re.findall(r"\b\d{4,8}\b", text_content)
-                    if codes:
-                        print(f"[+] Dogrulama kodu bulundu: {codes[0]}")
-                        return codes[0]
+                    print(f"[+] Yeni mail alindi! ID: {msg_id}")
+                    content = self._fetch_message_content(msg_id, inbox_snapshot)
+                    code = self._extract_code(content)
+                    if code:
+                        print(f"[+] Dogrulama kodu bulundu: {code}")
+                        return code
 
             time.sleep(3)
 
@@ -1438,10 +1583,10 @@ def generate_ai_image_service(
 def generate_ai_video_service(
     member_token: str,
     user_prompt: str = "a cute astronaut cat floating in space station, cinematic lighting",
-    model_key: str = "sora_2_std",
+    model_key: str = "VEO_3_1",
     aspect_ratio: str = "16:9",
-    resolution: str = "720p",
-    processing_duration: int = 8,
+    resolution: str = "1080p",
+    processing_duration: int = 4,
     sound: str = "none",
     effect_mode: str = "TextToVideo",
     source_image_path: str = None,
@@ -1453,7 +1598,7 @@ def generate_ai_video_service(
     task_id: str = None,
 ):
     actual_model_key = VIDEO_MODEL_MAPPING.get(model_key, model_key)
-    model_data = VIDEO_MODELS_CONFIG.get(actual_model_key, VIDEO_MODELS_CONFIG.get("sora_2_std"))
+    model_data = VIDEO_MODELS_CONFIG.get(actual_model_key, VIDEO_MODELS_CONFIG.get("veo_3_1_lite"))
     if isinstance(model_data["model"], dict):
         model_name_str = model_data["model"].get(effect_mode, list(model_data["model"].values())[0])
     else:
@@ -2052,98 +2197,86 @@ def get_or_create_active_account(api_key_id, task_id=None, force_new=False):
 
     return None, None
 
-def deduct_api_key_quota(api_key_id, task_id=None, amount=1):
-    """Deducts `amount` (e.g. 15 for images, 50/55 for videos) accounts/quotas from the API key's available accounts upon successful task completion.
+def deduct_api_key_quota(api_key_id, task_id=None):
+    """Deducts 1 account/quota from the API key's available accounts upon successful task completion.
     Prioritizes accounts other than the currently active working account so the active account remains intact in DB.
     Even if the active account's DB row is consumed, its in-memory session (ACTIVE_ACCOUNTS) stays fully operational.
     """
     try:
-        if amount is None or amount <= 0:
-            amount = 1
-
         active_acc = ACTIVE_ACCOUNTS.get(api_key_id)
         active_email = active_acc.get("email") if active_acc else None
 
         conn = db.get_connection()
         cursor = conn.cursor()
-        consumed_emails = []
+        consumed_email = None
 
         if db.DB_TYPE == 'postgresql':
-            # 1. Önce aktif çalışan hesap DIŞINDAKİ boş hesapları seç
+            # 1. Önce aktif çalışan hesap DIŞINDAKİ boş bir hesabı düş
             if active_email:
                 cursor.execute(
-                    'SELECT email FROM accounts WHERE api_key_id = %s AND used = 0 AND email != %s LIMIT %s',
-                    (api_key_id, active_email, amount)
+                    'SELECT email FROM accounts WHERE api_key_id = %s AND used = 0 AND email != %s LIMIT 1',
+                    (api_key_id, active_email)
                 )
-                rows = cursor.fetchall()
-                for row in rows:
-                    email_val = row['email'] if isinstance(row, dict) else row[0]
-                    consumed_emails.append(email_val)
+                row = cursor.fetchone()
+                if row:
+                    consumed_email = row['email'] if isinstance(row, dict) else row[0]
             
-            # 2. Eğer daha fazla kota gerekiyorsa (aktif hesap dahil)
-            remaining_needed = amount - len(consumed_emails)
-            if remaining_needed > 0:
+            # 2. Eğer başka hesap yoksa (sadece aktif hesap kalmışsa) onu düş
+            if not consumed_email:
                 cursor.execute(
-                    'SELECT email FROM accounts WHERE api_key_id = %s AND used = 0 LIMIT %s',
-                    (api_key_id, remaining_needed)
+                    'SELECT email FROM accounts WHERE api_key_id = %s AND used = 0 LIMIT 1',
+                    (api_key_id,)
                 )
-                rows = cursor.fetchall()
-                for row in rows:
-                    email_val = row['email'] if isinstance(row, dict) else row[0]
-                    if email_val not in consumed_emails:
-                        consumed_emails.append(email_val)
+                row = cursor.fetchone()
+                if row:
+                    consumed_email = row['email'] if isinstance(row, dict) else row[0]
 
-            if consumed_emails:
+            if consumed_email:
                 cursor.execute(
-                    'UPDATE accounts SET used = 1 WHERE api_key_id = %s AND email = ANY(%s)',
-                    (api_key_id, consumed_emails)
+                    'UPDATE accounts SET used = 1 WHERE api_key_id = %s AND email = %s',
+                    (api_key_id, consumed_email)
                 )
                 if task_id:
                     cursor.execute(
                         'UPDATE tasks SET account_email = %s WHERE task_id = %s',
-                        (consumed_emails[0], task_id)
+                        (consumed_email, task_id)
                     )
                 conn.commit()
-                print(f"[QUOTA] Successfully deducted {len(consumed_emails)} quota units (requested {amount}) for task {task_id}.")
+                print(f"[QUOTA] Successfully deducted 1 quota ({consumed_email}) for task {task_id}.")
         else:
             # SQLite versiyonu
             if active_email:
                 cursor.execute(
-                    'SELECT email FROM accounts WHERE api_key_id = ? AND used = 0 AND email != ? LIMIT ?',
-                    (api_key_id, active_email, amount)
+                    'SELECT email FROM accounts WHERE api_key_id = ? AND used = 0 AND email != ? LIMIT 1',
+                    (api_key_id, active_email)
                 )
-                rows = cursor.fetchall()
-                for row in rows:
-                    email_val = row['email'] if isinstance(row, dict) else row[0]
-                    consumed_emails.append(email_val)
+                row = cursor.fetchone()
+                if row:
+                    consumed_email = row['email'] if isinstance(row, dict) else row[0]
 
-            remaining_needed = amount - len(consumed_emails)
-            if remaining_needed > 0:
+            if not consumed_email:
                 cursor.execute(
-                    'SELECT email FROM accounts WHERE api_key_id = ? AND used = 0 LIMIT ?',
-                    (api_key_id, remaining_needed)
+                    'SELECT email FROM accounts WHERE api_key_id = ? AND used = 0 LIMIT 1',
+                    (api_key_id,)
                 )
-                rows = cursor.fetchall()
-                for row in rows:
-                    email_val = row['email'] if isinstance(row, dict) else row[0]
-                    if email_val not in consumed_emails:
-                        consumed_emails.append(email_val)
+                row = cursor.fetchone()
+                if row:
+                    consumed_email = row['email'] if isinstance(row, dict) else row[0]
 
-            if consumed_emails:
-                placeholders = ','.join(['?'] * len(consumed_emails))
+            if consumed_email:
                 cursor.execute(
-                    f'UPDATE accounts SET used = 1 WHERE api_key_id = ? AND email IN ({placeholders})',
-                    [api_key_id] + consumed_emails
+                    'UPDATE accounts SET used = 1 WHERE api_key_id = ? AND email = ?',
+                    (api_key_id, consumed_email)
                 )
                 if task_id:
                     cursor.execute(
                         'UPDATE tasks SET account_email = ? WHERE task_id = ?',
-                        (consumed_emails[0], task_id)
+                        (consumed_email, task_id)
                     )
                 conn.commit()
-                print(f"[QUOTA] Successfully deducted {len(consumed_emails)} quota units (requested {amount}) for task {task_id}.")
+                print(f"[QUOTA] Successfully deducted 1 quota ({consumed_email}) for task {task_id}.")
         conn.close()
-        return consumed_emails
+        return consumed_email
     except Exception as e:
         print(f"[QUOTA] Error deducting quota: {e}")
         return None
@@ -2174,14 +2307,6 @@ def process_image_task(task_id, params, api_key_id):
         aspect_ratio = params.get('size', '1:1')
         resolution = params.get('resolution', '1K')
         batch_size = int(params.get('batch_size', 1))
-
-        # Determine API quota to deduct for image model
-        model_api_credit = 15
-        for m in AVAILABLE_MODELS.get('image', []):
-            if m.get('id') == raw_model or m.get('id') == model:
-                model_api_credit = m.get('credit', 15)
-                break
-        total_quota_to_deduct = model_api_credit * batch_size
 
         # Handle reference images (Image-to-Image)
         reference_images = []
@@ -2304,7 +2429,7 @@ def process_image_task(task_id, params, api_key_id):
 
             if completed_files:
                 db.update_task_status(task_id, 'completed', make_proxy_url(completed_files[0]))
-                deduct_api_key_quota(api_key_id, task_id, amount=total_quota_to_deduct)
+                deduct_api_key_quota(api_key_id, task_id)
                 post_credits_info = get_member_remaining_credits(current_token)
                 post_credits = post_credits_info.get("total_remain", "?") if post_credits_info else "?"
                 print(f"[RENDER LOG] [IMAGE TASK: {task_id}] [TAMAMLANDI] -> Hesap: {account['email']} | Kalan Kredi: {post_credits}\n")
@@ -2336,21 +2461,12 @@ def process_video_task(task_id, params, api_key_id):
         db.update_task_status(task_id, 'running')
 
         prompt = params.get('prompt', '')
-        has_start_frame = bool(params.get('start_frame'))
-        default_model = 'sora_2_std' if has_start_frame else 'seedance_2_0_mini'
-        raw_model = params.get('model') or default_model
+        raw_model = params.get('model', 'VEO_3_1')
         model = VIDEO_MODEL_MAPPING.get(raw_model, raw_model)
         aspect_ratio = params.get('size', '16:9')
-        resolution = params.get('resolution', '720p')
-        duration = int(params.get('duration', 8 if model == 'sora_2_std' else 10))
+        resolution = params.get('resolution', '1080p')
+        duration = int(params.get('duration', 4))
         sound = params.get('sound', 'vendor')
-
-        # Determine API quota to deduct for video model
-        model_api_credit = 50
-        for m in AVAILABLE_MODELS.get('video', []):
-            if m.get('id') == raw_model or m.get('id') == model:
-                model_api_credit = m.get('credit', 50)
-                break
 
         input_mode = "TextToVideo"
         source_image_path = None
@@ -2426,34 +2542,6 @@ def process_video_task(task_id, params, api_key_id):
                 })
                 db.update_task_token(task_id, token_data)
 
-                # If Sora 2 is invoked without a start frame, auto-generate initial frame from prompt
-                current_source_image_path = source_image_path
-                current_input_mode = input_mode
-                if model == "sora_2_std" and current_input_mode == "TextToVideo" and not current_source_image_path:
-                    try:
-                        print(f"[SORA-2] Auto-generating initial frame for Text-to-Video task {task_id}...")
-                        t2i_res = generate_ai_image_service(
-                            member_token=member_token,
-                            user_prompt=prompt,
-                            model_key="NANO_BANANA_2",
-                            aspect_ratio=aspect_ratio,
-                            resolution="1K",
-                            batch_size="1",
-                            task_id=task_id
-                        )
-                        if t2i_res and t2i_res.get("status") == "Done" and t2i_res.get("files"):
-                            img_url = t2i_res["files"][0]
-                            img_resp = requests.get(img_url, timeout=30)
-                            if img_resp.status_code == 200:
-                                temp_auto_img = os.path.join(tempfile.gettempdir(), f"sora_auto_{task_id}.jpg")
-                                with open(temp_auto_img, "wb") as f:
-                                    f.write(img_resp.content)
-                                temp_files.append(temp_auto_img)
-                                current_source_image_path = temp_auto_img
-                                current_input_mode = "ImageToVideo"
-                    except Exception as ex:
-                        print(f"[SORA-2] Auto-frame generation error: {ex}")
-
                 result = generate_ai_video_service(
                     member_token=member_token,
                     user_prompt=prompt,
@@ -2462,8 +2550,8 @@ def process_video_task(task_id, params, api_key_id):
                     resolution=resolution,
                     processing_duration=duration,
                     sound=sound,
-                    effect_mode=current_input_mode,
-                    source_image_path=current_source_image_path,
+                    effect_mode=input_mode,
+                    source_image_path=source_image_path,
                     last_image_path=last_image_path,
                     ref_images=ref_images if ref_images else None,
                     ref_videos=ref_videos if ref_videos else None,
@@ -2533,10 +2621,10 @@ def process_video_task(task_id, params, api_key_id):
 
             if video_file:
                 db.update_task_status(task_id, 'completed', make_proxy_url(video_file))
-                deduct_api_key_quota(api_key_id, task_id, amount=model_api_credit)
+                deduct_api_key_quota(api_key_id, task_id)
             else:
                 db.update_task_status(task_id, 'completed', make_proxy_url(completed_files[0]) if completed_files else "")
-                deduct_api_key_quota(api_key_id, task_id, amount=model_api_credit)
+                deduct_api_key_quota(api_key_id, task_id)
             post_credits_info = get_member_remaining_credits(current_token)
             post_credits = post_credits_info.get("total_remain", "?") if post_credits_info else "?"
             print(f"[RENDER LOG] [VIDEO TASK: {task_id}] [TAMAMLANDI] -> Hesap: {account['email']} | Kalan Kredi: {post_credits}\n")
