@@ -99,8 +99,135 @@ MEMBER_HEADERS = {
 # RESIM MODEL CONFIGURATIONS
 # ==============================================================================
 IMAGE_MODELS_CONFIG = {
+    # ==========================================================================
+    # FEATURED (ANA LISTE)
+    # ==========================================================================
+    "gpt_image_2_5_sunburst": {
+        "name": "GPT Image 2.5 Sunburst",
+        "vendor": "OpenAI",
+        "actionId_prefix": "genimage_1_img_openai_gptimage2.5sunburst",
+        "promptLength": 8000,
+        "ref_img_limit": 16,
+        "supported_resolutions": ["1K", "2K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 3, "2K": 6},
+            "enable": {"1K": 3, "2K": 6},
+        },
+        "default_style": "Style_1003_Custom_ChatGPT",
+        "process_time": 90,
+    },
+    "gpt_image_2_5_flare": {
+        "name": "GPT-Image-2.5 Flare",
+        "vendor": "OpenAI",
+        "actionId_prefix": "genimage_1_img_openai_gptimage2.5flare",
+        "promptLength": 8000,
+        "ref_img_limit": 16,
+        "supported_resolutions": ["1K", "2K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 3, "2K": 6},
+            "enable": {"1K": 3, "2K": 6},
+        },
+        "default_style": "Style_1004_Custom_ChatGPT",
+        "process_time": 90,
+    },
+    "gpt_image_2": {
+        "name": "GPT-Image-2",
+        "vendor": "OpenAI",
+        "actionId_prefix": "genimage_1_img_openai_gptimage2",
+        "promptLength": 8000,
+        "ref_img_limit": 16,
+        "supported_resolutions": ["1K", "2K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 3, "2K": 6},
+            "enable": {"1K": 3, "2K": 6},
+        },
+        "default_style": "Style_1002_Custom_ChatGPT",
+        "process_time": 90,
+    },
+    "gemini_3_pro": {
+        "name": "Gemini 3 Pro (Nano Banana Pro)",
+        "vendor": "Google",
+        "actionId_prefix": "genimage_1_img_google_gemini3pro",
+        "promptLength": 2500,
+        "ref_img_limit": 14,
+        "supported_resolutions": ["1K", "2K", "4K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 6, "2K": 6, "4K": 12},
+            "enable": {"1K": 6, "2K": 6, "4K": 12},
+        },
+        "default_style": "Style_3001_Custom_Gemini",
+        "process_time": 60,
+    },
+    "gemini_3_1_flash": {
+        "name": "Gemini 3.1 Flash (Nano Banana 2)",
+        "vendor": "Google",
+        "actionId_prefix": "genimage_1_img_google_gemini3.1flash",
+        "promptLength": 2500,
+        "ref_img_limit": 14,
+        "supported_resolutions": ["1K", "2K", "4K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 3, "2K": 5, "4K": 7},
+            "enable": {"1K": 3, "2K": 5, "4K": 7},
+        },
+        "default_style": "Style_3002_Custom_Gemini",
+        "process_time": 60,
+    },
+    "seedream_5_pro": {
+        "name": "SeeDream 5.0 Pro",
+        "vendor": "ByteDance",
+        "actionId_prefix": "genimage_1_img_bytedance_seedream5.0pro",
+        "promptLength": 600,
+        "ref_img_limit": 10,
+        "supported_resolutions": ["1K", "2K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 3, "2K": 5},
+            "enable": {"1K": 3, "2K": 5},
+        },
+        "default_style": "Style_9001_Custom_Seedream",
+        "process_time": 120,
+    },
+    "flux_2_pro": {
+        "name": "Flux 2 Pro",
+        "vendor": "BlackForest",
+        "actionId_prefix": "genimage_1_img_blackforest_flux2pro",
+        "promptLength": 2500,
+        "ref_img_limit": 4,
+        "supported_resolutions": ["1K", "2K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 2, "2K": 5},
+            "enable": {"1K": 3, "2K": 6},
+        },
+        "default_style": "Style_7000_Custom_FluxAPI",
+        "process_time": 40,
+    },
+
+    # ==========================================================================
+    # MORE MODELS (ALT LISTE)
+    # ==========================================================================
+    "gemini_3_1_flash_lite": {
+        "name": "Gemini 3.1 Flash Lite (Nano Banana 2 Lite)",
+        "vendor": "Google",
+        "actionId_prefix": "genimage_1_img_google_gemini3.1flashlite",
+        "promptLength": 2500,
+        "ref_img_limit": 14,
+        "supported_resolutions": ["1K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 2},
+            "enable": {"1K": 2},
+        },
+        "default_style": "Style_3003_Custom_Gemini",
+        "process_time": 60,
+    },
     "gemini_2_5_flash": {
-        "name": "Nano Banana",
+        "name": "Gemini 2.5 Flash (Nano Banana)",
         "vendor": "Google",
         "actionId_prefix": "genimage_1_img_google_gemini2.5flash",
         "promptLength": 2500,
@@ -109,53 +236,163 @@ IMAGE_MODELS_CONFIG = {
         "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
         "credits": {
             "none": {"1K": 2},
-            "enable": {"1K": 2}
+            "enable": {"1K": 2},
         },
-        "default_style": "Style_3003_Custom_Gemini"
+        "default_style": "Style_3000_Custom_Gemini",
+        "process_time": 30,
     },
-    "gemini_3_1_flash": {
-        "name": "Nano Banana 2",
-        "vendor": "Google",
-        "actionId_prefix": "genimage_1_img_google_gemini3.1flash",
-        "promptLength": 2500,
-        "ref_img_limit": 5,
-        "supported_resolutions": ["1K", "2K", "4K"],
+    "seedream_5_lite": {
+        "name": "SeeDream 5.0 Lite",
+        "vendor": "ByteDance",
+        "actionId_prefix": "genimage_1_img_bytedance_seedream5.0lite",
+        "promptLength": 600,
+        "ref_img_limit": 14,
+        "supported_resolutions": ["2K", "3K"],
         "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
         "credits": {
-            "none": {"1K": 3, "2K": 5, "4K": 7},
-            "enable": {"1K": 3, "2K": 5, "4K": 7}
+            "none": {"2K": 3, "3K": 3},
+            "enable": {"2K": 3, "3K": 3},
         },
-        "default_style": "Style_3002_Custom_Gemini"
+        "default_style": "Style_9000_Custom_Seedream",
+        "process_time": 60,
     },
-    "gemini_3_pro": {
-        "name": "Nano Banana Pro",
-        "vendor": "Google",
-        "actionId_prefix": "genimage_1_img_google_gemini3pro",
-        "promptLength": 2500,
-        "ref_img_limit": 5,
-        "supported_resolutions": ["1K", "2K", "4K"],
-        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
-        "credits": {
-            "none": {"1K": 6, "2K": 6, "4K": 12},
-            "enable": {"1K": 6, "2K": 6, "4K": 12}
-        },
-        "default_style": "Style_3001_Custom_Gemini"
-    },
-    "gpt_image_2": {
-        "name": "GPT-Image-2",
+    "gpt_image_1_5": {
+        "name": "GPT-Image-1.5",
         "vendor": "OpenAI",
-        "actionId_prefix": "genimage_1_img_openai_gptimage2",
-        "promptLength": 8000,
-        "ref_img_limit": 5,
+        "actionId_prefix": "genimage_1_img_openai_gptimage1.5",
+        "promptLength": 2500,
+        "ref_img_limit": 16,
+        "supported_resolutions": ["1K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 3},
+            "enable": {"1K": 3},
+        },
+        "default_style": "Style_1001_Custom_ChatGPT",
+        "process_time": 30,
+    },
+    "gpt_image_1": {
+        "name": "GPT-Image-1",
+        "vendor": "OpenAI",
+        "actionId_prefix": "genimage_1_img_openai_gptimage1",
+        "promptLength": 2500,
+        "ref_img_limit": 16,
+        "supported_resolutions": ["1K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 2},
+            "enable": {"1K": 2},
+        },
+        "default_style": "Style_1000_Custom_ChatGPT",
+        "process_time": 30,
+    },
+    "z_image": {
+        "name": "Z-Image",
+        "vendor": "CyberLink",
+        "actionId_prefix": "genimage_1_img_cyberlink_zimageturbo",
+        "promptLength": 800,
+        "ref_img_limit": 0,
         "supported_resolutions": ["1K", "2K"],
         "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
         "credits": {
-            "none": {"1K": 3, "2K": 6},
-            "enable": {"1K": 3, "2K": 6}
+            "none": {"1K": 1, "2K": 2},
         },
-        "default_style": "Style_1002_Custom_ChatGPT"
-    }
+        "default_style": "Style_000_Custom_ZImage",
+        "process_time": 15,
+    },
+    "kling_o3": {
+        "name": "Kling O3",
+        "vendor": "Kling",
+        "actionId_prefix": "genimage_1_img_kling_o3",
+        "promptLength": 2500,
+        "ref_img_limit": 10,
+        "supported_resolutions": ["1K", "2K", "4K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 3, "2K": 3, "4K": 5},
+            "enable": {"1K": 3, "2K": 3, "4K": 5},
+        },
+        "default_style": "Style_5001_Custom_Kling",
+        "process_time": 60,
+    },
+    "kling_o1": {
+        "name": "Kling O1",
+        "vendor": "Kling",
+        "actionId_prefix": "genimage_1_img_kling_o1",
+        "promptLength": 2500,
+        "ref_img_limit": 10,
+        "supported_resolutions": ["1K", "2K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 3, "2K": 3},
+            "enable": {"1K": 3, "2K": 3},
+        },
+        "default_style": "Style_5000_Custom_Kling",
+        "process_time": 40,
+    },
+    "flux_dev": {
+        "name": "Flux Dev 1",
+        "vendor": "CyberLink",
+        "actionId_prefix": "genimage_1_img_cyberlink_fluxdev1",
+        "promptLength": 800,
+        "ref_img_limit": 0,
+        "supported_resolutions": ["1K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 1},
+        },
+        "default_style": "Style_047_None_Flux",
+        "process_time": 20,
+    },
+    "stable_diffusion": {
+        "name": "Stable Diffusion XL",
+        "vendor": "CyberLink",
+        "actionId_prefix": "genimage_1_img_cyberlink_stablediffusion",
+        "promptLength": 800,
+        "ref_img_limit": 1,
+        "supported_resolutions": ["1K"],
+        "supported_aspect_ratios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+        "credits": {
+            "none": {"1K": 1},
+            "enable": {"1K": 1},
+        },
+        "default_style": "Style_Default",
+        "effect_type": "TtiStyleRef",
+        "process_time": 15,
+    },
 }
+
+from bs4 import BeautifulSoup
+
+# ==============================================================================
+# HESAP OLUSTURMA VE AKTIFLESTIRME (temp-mail.asia)
+# ==============================================================================
+WHITELIST_DOMAINS = [
+    "umail.asia",
+    "cmail.asia",
+    "tempmailt.com",
+    "t-mail.asia",
+    "okyre.com",
+    "asia.banglatip.com",
+    "pmail.asia",
+    "1mail.edu.pl",
+    "asia.1maill.com",
+    "bd.1maill.com",
+    "in.1maill.com",
+    "bd.5secmail.com",
+    "in.5secmail.com",
+    "ng.5secmail.com",
+    "asia.5secmail.com",
+]
+
+POLL_COMPONENTS = [
+    "frontend.components.action",
+    "frontend.components.token-login",
+    "frontend.components.check-mail",
+    "frontend.components.inbox-message",
+]
+
+
 
 # Image Model ID Mapping (Frontend / API ID -> Backend Model ID)
 IMAGE_MODEL_MAPPING = {
@@ -183,125 +420,791 @@ IMAGE_MODELS_CONFIG["GPT_IMAGE_2"] = IMAGE_MODELS_CONFIG["gpt_image_2"]
 # ==============================================================================
 # VIDEO MODEL CONFIGURATIONS
 # ==============================================================================
+
 VIDEO_MODELS_CONFIG = {
-    "sora_2_std": {
-        "name": "Sora 2",
-        "model": "sora-2",
-        "vendor": "OpenAI",
-        "supported_modes": ["ImageToVideo"],
-        "supported_frame_modes": ["single"],
-        "supported_resolutions": ["720p"],
-        "supported_aspect_ratios": ["16:9", "9:16"],
-        "supported_durations": [8],
-        "action_id": "genvideo_1_sec_openai_sora2_{sound}_720p",
-        "action_id_i2v": "genvideo_1_sec_openai_custom_sora2std_{sound}_{frame_mode}",
+    # ==========================================================================
+    # SEEDANCE (BytePlus)
+    # ==========================================================================
+    "seedance_2_0_fast": {
+        "name": "Seedance 2.0 Fast",
+        "model": "dreamina-seedance-2-0-fast-260128",
+        "vendor": "BytePlus",
+        "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["480p", "720p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": list(range(4, 16)),
+        "duration_config": {'type': 'continuous', 'min': 4, 'max': 15, 'step': 1, 'default': 5},
+        "supported_resolutions_by_mode": {
+            "ImageToVideo": ["720p"],
+            "TextToVideo": ["480p", "720p"],
+            "ReferenceToVideo": ["480p", "720p"],
+        },
+        "action_id": "genvideo_1_sec_bytedance_seedance2.0fast_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_bytedance_custom_seedance2.0fast_{sound}_{frame_mode}_{resolution}",
         "credit_map": {
+            ("none", "480p"): 3,
             ("none", "720p"): 6,
+            ("vendor", "480p"): 3,
             ("vendor", "720p"): 6,
         },
-        "credit": 6,
-        "mode": "std",
-        "default_sound": "vendor",
+        "reference_media_limit": {
+            "supported_types": ["image", "video"],
+            "max_images": 9,
+            "max_videos": 3,
+            "max_total": 12,
+            "max_video_duration": 15,
+        },
     },
     "seedance_2_0_mini": {
-        "name": "Seedance 2.0",
+        "name": "Seedance 2.0 Mini",
         "model": "dreamina-seedance-2-0-mini-260615",
         "vendor": "BytePlus",
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
         "supported_frame_modes": ["single", "startend"],
-        "supported_resolutions": ["720p"],
+        "supported_resolutions": ["480p", "720p"],
         "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
-        "supported_durations": [10],
+        "supported_durations": list(range(4, 16)),
+        "duration_config": {'type': 'continuous', 'min': 4, 'max': 15, 'step': 1, 'default': 5},
         "supported_resolutions_by_mode": {
             "ImageToVideo": ["720p"],
-            "TextToVideo": ["720p"],
-            "ReferenceToVideo": ["720p"],
-        },
-        "supported_durations_by_mode": {
-            "ImageToVideo": [10],
-            "TextToVideo": [10],
-            "ReferenceToVideo": [10],
+            "TextToVideo": ["480p", "720p"],
+            "ReferenceToVideo": ["480p", "720p"],
         },
         "action_id": "genvideo_1_sec_bytedance_seedance2.0mini_{sound}_{resolution}",
         "action_id_i2v": "genvideo_1_sec_bytedance_custom_seedance2.0mini_{sound}_{frame_mode}_{resolution}",
         "credit_map": {
+            ("none", "480p"): 2,
             ("none", "720p"): 4,
+            ("vendor", "480p"): 2,
             ("vendor", "720p"): 4,
         },
-        "credit": 2,
-        "mode": "mini",
+        "reference_media_limit": {
+            "supported_types": ["image", "video"],
+            "max_images": 9,
+            "max_videos": 3,
+            "max_total": 12,
+            "max_video_duration": 15,
+        },
+    },
+    "seedance_2_0_pro": {
+        "name": "Seedance 2.0 Pro",
+        "model": "dreamina-seedance-2-0-260128",
+        "vendor": "BytePlus",
+        "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["480p", "720p", "1080p", "4K"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": list(range(4, 16)),
+        "duration_config": {'type': 'continuous', 'min': 4, 'max': 15, 'step': 1, 'default': 5},
+        "supported_resolutions_by_mode": {
+            "ImageToVideo": ["1080p"],
+            "TextToVideo": ["480p", "720p", "1080p", "4K"],
+            "ReferenceToVideo": ["480p", "720p", "1080p", "4K"],
+        },
+        "action_id": "genvideo_1_sec_bytedance_seedance2.0std_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_bytedance_custom_seedance2.0std_{sound}_{frame_mode}_{resolution}",
+        "credit_map": {
+            ("none", "480p"): 4,
+            ("none", "720p"): 8,
+            ("none", "1080p"): 18,
+            ("none", "4K"): 32,
+            ("vendor", "480p"): 4,
+            ("vendor", "720p"): 8,
+            ("vendor", "1080p"): 18,
+            ("vendor", "4K"): 32,
+        },
+        "reference_media_limit": {
+            "supported_types": ["image", "video"],
+            "max_images": 9,
+            "max_videos": 3,
+            "max_total": 12,
+            "max_video_duration": 15,
+        },
+    },
+    "seedance_2_5": {
+        "name": "Seedance 2.5",
+        "model": "dreamina-seedance-2-5-260628",
+        "vendor": "BytePlus",
+        "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["480p", "720p", "1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": list(range(4, 31)),
+        "duration_config": {'type': 'continuous', 'min': 4, 'max': 30, 'step': 1, 'default': 5},
+        "supported_resolutions_by_mode": {
+            "ImageToVideo": ["480p", "720p", "1080p"],
+            "TextToVideo": ["480p", "720p", "1080p"],
+            "ReferenceToVideo": ["480p", "720p", "1080p"],
+        },
+        "action_id": "genvideo_1_sec_bytedance_seedance2.5std_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_bytedance_custom_seedance2.5std_{sound}_{frame_mode}_{resolution}",
+        "credit_map": {
+            ("none", "480p"): 6,
+            ("none", "720p"): 12,
+            ("none", "1080p"): 24,
+            ("vendor", "480p"): 6,
+            ("vendor", "720p"): 12,
+            ("vendor", "1080p"): 24,
+        },
+        "reference_media_limit": {
+            "supported_types": ["image", "video"],
+            "max_images": 20,
+            "max_videos": 10,
+            "max_total": 20,
+            "max_video_duration": 30,
+        },
+    },
+
+    # ==========================================================================
+    # ALIBABA (Wan & Happy Horse)
+    # ==========================================================================
+    "happy_horse_1_1": {
+        "name": "Happy Horse 1.1",
+        "model": {
+            "TextToVideo": "happyhorse-1.1-t2v",
+            "ImageToVideo": "happyhorse-1.1-i2v",
+            "ReferenceToVideo": "happyhorse-1.1-r2v",
+        },
+        "vendor": "Alibaba",
+        "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
+        "supported_frame_modes": ["single"],
+        "supported_resolutions": ["720p", "1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": list(range(3, 16)),
+        "duration_config": {'type': 'continuous', 'min': 3, 'max': 15, 'step': 1, 'default': 5},
+        "supported_resolutions_by_mode": {
+            "ImageToVideo": ["1080p"],
+            "TextToVideo": ["720p", "1080p"],
+            "ReferenceToVideo": ["720p", "1080p"],
+        },
+        "action_id": "genvideo_1_sec_alibaba_happyhorse1.1_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_alibaba_custom_happyhorse1.1_{sound}_{frame_mode}_1080p",
+        "credit_map": {
+            ("none", "720p"): 5,
+            ("none", "1080p"): 8,
+            ("vendor", "720p"): 5,
+            ("vendor", "1080p"): 8,
+        },
         "reference_media_limit": {
             "supported_types": ["image"],
+            "max_images": 9,
+            "max_media": 9,
+        },
+    },
+    "happy_horse_1_0": {
+        "name": "Happy Horse 1.0",
+        "model": {
+            "TextToVideo": "happyhorse-1.0-t2v",
+            "ImageToVideo": "happyhorse-1.0-i2v",
+            "ReferenceToVideo": "happyhorse-1.0-r2v",
+        },
+        "vendor": "Alibaba",
+        "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
+        "supported_frame_modes": ["single"],
+        "supported_resolutions": ["720p", "1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": list(range(3, 16)),
+        "duration_config": {'type': 'continuous', 'min': 3, 'max': 15, 'step': 1, 'default': 5},
+        "supported_resolutions_by_mode": {
+            "ImageToVideo": ["1080p"],
+            "TextToVideo": ["720p", "1080p"],
+            "ReferenceToVideo": ["720p", "1080p"],
+        },
+        "action_id": "genvideo_1_sec_alibaba_happyhorse1.0_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_alibaba_custom_happyhorse1.0_{sound}_{frame_mode}_1080p",
+        "credit_map": {
+            ("none", "720p"): 5,
+            ("none", "1080p"): 8,
+            ("vendor", "720p"): 5,
+            ("vendor", "1080p"): 8,
+        },
+        "reference_media_limit": {
+            "supported_types": ["image"],
+            "max_images": 9,
+            "max_media": 9,
+        },
+    },
+    "wan_2_7": {
+        "name": "Wan 2.7",
+        "model": {
+            "TextToVideo": "wan2.7-t2v",
+            "ImageToVideo": "wan2.7-i2v",
+            "ReferenceToVideo": "wan2.7-r2v",
+        },
+        "vendor": "Alibaba",
+        "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["720p", "1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": list(range(2, 16)),
+        "duration_config": {'type': 'continuous', 'min': 2, 'max': 15, 'step': 1, 'default': 5},
+        "supported_resolutions_by_mode": {
+            "ImageToVideo": ["1080p"],
+            "TextToVideo": ["720p", "1080p"],
+            "ReferenceToVideo": ["720p", "1080p"],
+        },
+        "action_id": "genvideo_1_sec_alibaba_wan2.7_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_alibaba_custom_wan2.7_{sound}_{frame_mode}_1080p",
+        "credit_map": {
+            ("none", "720p"): 5,
+            ("none", "1080p"): 8,
+            ("vendor", "720p"): 5,
+            ("vendor", "1080p"): 8,
+        },
+        "reference_media_limit": {
+            "supported_types": ["image", "video"],
             "max_images": 5,
-            "max_videos": 0,
+            "max_videos": 5,
             "max_total": 5,
+            "max_video_duration": 30,
+        },
+    },
+    "wan_3_0": {
+        "name": "Wan 3.0",
+        "model": "wan3.0-video",
+        "vendor": "Alibaba",
+        "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["480p", "720p", "1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": list(range(2, 31)),
+        "duration_config": {'type': 'continuous', 'min': 2, 'max': 30, 'step': 1, 'default': 5},
+        "supported_resolutions_by_mode": {
+            "ImageToVideo": ["1080p"],
+            "TextToVideo": ["480p", "720p", "1080p"],
+            "ReferenceToVideo": ["480p", "720p", "1080p"],
+        },
+        "action_id": "genvideo_1_sec_alibaba_wan3.0_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_alibaba_custom_wan3.0_{sound}_{frame_mode}_1080p",
+        "credit_map": {
+            ("none", "480p"): 2,
+            ("none", "720p"): 4,
+            ("none", "1080p"): 8,
+            ("vendor", "480p"): 2,
+            ("vendor", "720p"): 4,
+            ("vendor", "1080p"): 8,
+        },
+        "reference_media_limit": {
+            "supported_types": ["image", "video"],
+            "max_images": 10,
+            "max_videos": 5,
+            "max_total": 15,
+            "max_video_duration": 15,
+        },
+    },
+
+    # ==========================================================================
+    # GOOGLE (Veo & Gemini Omni)
+    # ==========================================================================
+    "veo_3_1": {
+        "name": "Veo 3.1",
+        "model": "veo-3.1-generate-preview",
+        "vendor": "Google",
+        "supported_modes": ["TextToVideo", "ImageToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["720p", "1080p", "4k"],
+        "supported_aspect_ratios": ["16:9", "9:16"],
+        "supported_durations": [4, 6, 8],
+        "duration_config": {'type': 'discrete', 'options': [4, 6, 8], 'default': 4},
+        "action_id": "genvideo_1_sec_google_veo3.1std_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_google_custom_veo3.1std_{sound}_{frame_mode}",
+        "credit_map": {
+            ("TextToVideo", "none", "720p"): 10,
+            ("TextToVideo", "none", "1080p"): 10,
+            ("TextToVideo", "none", "4k"): 20,
+            ("TextToVideo", "vendor", "720p"): 18,
+            ("TextToVideo", "vendor", "1080p"): 18,
+            ("TextToVideo", "vendor", "4k"): 30,
+            ("ImageToVideo", "none", "single", "720p"): 10,
+            ("ImageToVideo", "none", "single", "1080p"): 10,
+            ("ImageToVideo", "none", "single", "4k"): 10,
+            ("ImageToVideo", "none", "startend", "720p"): 10,
+            ("ImageToVideo", "none", "startend", "1080p"): 10,
+            ("ImageToVideo", "none", "startend", "4k"): 10,
+            ("ImageToVideo", "vendor", "single", "720p"): 18,
+            ("ImageToVideo", "vendor", "single", "1080p"): 18,
+            ("ImageToVideo", "vendor", "single", "4k"): 18,
+            ("ImageToVideo", "vendor", "startend", "720p"): 18,
+            ("ImageToVideo", "vendor", "startend", "1080p"): 18,
+            ("ImageToVideo", "vendor", "startend", "4k"): 18,
+        },
+    },
+    "veo_3_1_fast": {
+        "name": "Veo 3.1 Fast",
+        "model": "veo-3.1-fast-generate-preview",
+        "vendor": "Google",
+        "supported_modes": ["TextToVideo", "ImageToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["720p", "1080p", "4k"],
+        "supported_aspect_ratios": ["16:9", "9:16"],
+        "supported_durations": [4, 6, 8],
+        "duration_config": {'type': 'discrete', 'options': [4, 6, 8], 'default': 4},
+        "action_id": "genvideo_1_sec_google_veo3.1fast_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_google_custom_veo3.1fast_{sound}_{frame_mode}",
+        "credit_map": {
+            ("TextToVideo", "none", "720p"): 5,
+            ("TextToVideo", "none", "1080p"): 7,
+            ("TextToVideo", "none", "4k"): 14,
+            ("TextToVideo", "vendor", "720p"): 7,
+            ("TextToVideo", "vendor", "1080p"): 9,
+            ("TextToVideo", "vendor", "4k"): 16,
+            ("ImageToVideo", "none", "single", "720p"): 5,
+            ("ImageToVideo", "none", "single", "1080p"): 5,
+            ("ImageToVideo", "none", "single", "4k"): 5,
+            ("ImageToVideo", "none", "startend", "720p"): 5,
+            ("ImageToVideo", "none", "startend", "1080p"): 5,
+            ("ImageToVideo", "none", "startend", "4k"): 5,
+            ("ImageToVideo", "vendor", "single", "720p"): 8,
+            ("ImageToVideo", "vendor", "single", "1080p"): 8,
+            ("ImageToVideo", "vendor", "single", "4k"): 8,
+            ("ImageToVideo", "vendor", "startend", "720p"): 8,
+            ("ImageToVideo", "vendor", "startend", "1080p"): 8,
+            ("ImageToVideo", "vendor", "startend", "4k"): 8,
+        },
+    },
+    "veo_3_1_lite": {
+        "name": "Veo 3.1 Lite",
+        "model": "veo-3.1-lite-generate-001",
+        "vendor": "Google",
+        "supported_modes": ["TextToVideo", "ImageToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["720p", "1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16"],
+        "supported_durations": [4, 6, 8],
+        "duration_config": {'type': 'discrete', 'options': [4, 6, 8], 'default': 4},
+        "action_id": "genvideo_1_sec_google_veo3.1lite_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_google_custom_veo3.1lite_{sound}_{frame_mode}_{resolution}",
+        "credit_map": {
+            ("none", "720p"): 2,
+            ("none", "1080p"): 3,
+            ("vendor", "720p"): 3,
+            ("vendor", "1080p"): 5,
         },
     },
     "gemini_omni_flash": {
-        "name": "Gemini Omni Flash",
-        "model": "gemini-omni-flash-preview",
+        "name": "Gemini Omni 1.1 Flash",
+        "model": "gemini-omni-1.1-flash-preview",
         "vendor": "Google",
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
-        "supported_frame_modes": ["single"],
-        "supported_resolutions": ["720p"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["360p", "720p", "1080p", "4k"],
         "supported_aspect_ratios": ["16:9", "9:16"],
-        "supported_durations": [10],
-        "action_id": "genvideo_1_sec_google_geminiomniflash_{sound}_{resolution}",
-        "action_id_i2v": "genvideo_1_sec_google_custom_geminiomniflash_{sound}_{frame_mode}_{resolution}",
+        "supported_durations": list(range(3, 11)),
+        "duration_config": {'type': 'continuous', 'min': 3, 'max': 10, 'step': 1, 'default': 5},
+        "action_id": "genvideo_1_sec_google_geminiomni1.1flash_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_google_custom_geminiomni1.1flash_{sound}_{frame_mode}_{resolution}",
         "credit_map": {
-            ("none", "720p"): 5,
-            ("vendor", "720p"): 5,
+            ("TextToVideo", "none", "360p"): 2,
+            ("TextToVideo", "none", "720p"): 5,
+            ("TextToVideo", "none", "1080p"): 8,
+            ("TextToVideo", "none", "4k"): 8,
+            ("TextToVideo", "vendor", "360p"): 2,
+            ("TextToVideo", "vendor", "720p"): 5,
+            ("TextToVideo", "vendor", "1080p"): 8,
+            ("TextToVideo", "vendor", "4k"): 8,
+            ("ImageToVideo", "none", "360p"): 2,
+            ("ImageToVideo", "none", "720p"): 5,
+            ("ImageToVideo", "none", "1080p"): 8,
+            ("ImageToVideo", "none", "4k"): 15,
+            ("ImageToVideo", "vendor", "360p"): 2,
+            ("ImageToVideo", "vendor", "720p"): 5,
+            ("ImageToVideo", "vendor", "1080p"): 8,
+            ("ImageToVideo", "vendor", "4k"): 15,
+            ("ReferenceToVideo", "none", "360p"): 2,
+            ("ReferenceToVideo", "none", "720p"): 5,
+            ("ReferenceToVideo", "none", "1080p"): 8,
+            ("ReferenceToVideo", "none", "4k"): 15,
+            ("ReferenceToVideo", "vendor", "360p"): 2,
+            ("ReferenceToVideo", "vendor", "720p"): 5,
+            ("ReferenceToVideo", "vendor", "1080p"): 8,
+            ("ReferenceToVideo", "vendor", "4k"): 15,
         },
-        "credit": 5,
-        "mode": "std",
-        "default_sound": "vendor",
         "reference_media_limit": {
             "supported_types": ["image"],
             "max_images": 5,
-            "max_videos": 0,
-            "max_total": 5,
+            "max_media": 5,
+        },
+    },
+
+    # ==========================================================================
+    # KLING (Kuaishou)
+    # ==========================================================================
+    "kling_3_0": {
+        "name": "Kling 3.0",
+        "model": "kling-v3",
+        "vendor": "Kling",
+        "supported_modes": ["TextToVideo", "ImageToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["720p", "1080p", "4k"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": list(range(3, 16)),
+        "duration_config": {'type': 'continuous', 'min': 3, 'max': 15, 'step': 1, 'default': 5},
+        "supported_resolutions_by_mode": {
+            "ImageToVideo": ["720p", "1080p"],
+            "TextToVideo": ["720p", "1080p", "4k"],
+        },
+        "action_id": "genvideo_1_sec_kling_3.0pro_{sound}_1080p",
+        "action_id_overrides": {
+            "720p": "genvideo_1_sec_kling_3.0std_{sound}_720p",
+            "1080p": "genvideo_1_sec_kling_3.0pro_{sound}_1080p",
+            "4k": "genvideo_1_sec_kling_3.04k_{sound}_4k",
+        },
+        "action_id_i2v": "genvideo_1_sec_kling_custom_3.0pro_{sound}_{frame_mode}_1080p",
+        "action_id_i2v_overrides": {
+            "720p": "genvideo_1_sec_kling_custom_3.0std_{sound}_{frame_mode}_720p",
+            "1080p": "genvideo_1_sec_kling_custom_3.0pro_{sound}_{frame_mode}_1080p",
+        },
+        "credit_map": {
+            ("none", "720p"): 4,
+            ("none", "1080p"): 5,
+            ("none", "4k"): 14,
+            ("vendor", "720p"): 6,
+            ("vendor", "1080p"): 8,
+            ("vendor", "4k"): 14,
         },
     },
     "kling_o3": {
-        "name": "Kling 3.0",
+        "name": "Kling O3",
         "model": "kling-v3-omni",
         "vendor": "Kling",
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
         "supported_frame_modes": ["single", "startend"],
-        "supported_resolutions": ["720p"],
+        "supported_resolutions": ["720p", "1080p", "4k"],
         "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
-        "supported_durations": [10],
+        "supported_durations": list(range(3, 16)),
+        "duration_config": {'type': 'continuous', 'min': 3, 'max': 15, 'step': 1, 'default': 5},
         "supported_resolutions_by_mode": {
-            "ImageToVideo": ["720p"],
-            "TextToVideo": ["720p"],
-            "ReferenceToVideo": ["720p"],
+            "ImageToVideo": ["720p", "1080p"],
+            "TextToVideo": ["720p", "1080p", "4k"],
+            "ReferenceToVideo": ["720p", "1080p", "4k"],
         },
-        "supported_durations_by_mode": {
-            "ImageToVideo": [10],
-            "TextToVideo": [10],
-            "ReferenceToVideo": [10],
-        },
-        "action_id": "genvideo_1_sec_kling_o3std_{sound}_720p",
+        "action_id": "genvideo_1_sec_kling_o3pro_{sound}_1080p",
         "action_id_overrides": {
             "720p": "genvideo_1_sec_kling_o3std_{sound}_720p",
+            "1080p": "genvideo_1_sec_kling_o3pro_{sound}_1080p",
+            "4k": "genvideo_1_sec_kling_o34k_{sound}_4k",
         },
+        "action_id_i2v": "genvideo_1_sec_kling_custom_o3pro_{sound}_{frame_mode}_1080p",
         "action_id_i2v_overrides": {
             "720p": "genvideo_1_sec_kling_custom_o3std_{sound}_{frame_mode}_720p",
+            "1080p": "genvideo_1_sec_kling_custom_o3pro_{sound}_{frame_mode}_1080p",
         },
         "credit_map": {
             ("none", "720p"): 4,
+            ("none", "1080p"): 5,
+            ("none", "4k"): 14,
             ("vendor", "720p"): 5,
+            ("vendor", "1080p"): 6,
+            ("vendor", "4k"): 14,
         },
-        "credit": 5,
-        "mode": "std",
         "reference_media_limit": {
             "supported_types": ["image"],
-            "max_images": 5,
-            "max_videos": 0,
-            "max_total": 5,
+            "max_images": 7,
+            "max_media": 7,
+        },
+    },
+    "kling_2_6": {
+        "name": "Kling 2.6",
+        "model": "kling-v2-6",
+        "vendor": "Kling",
+        "supported_modes": ["TextToVideo", "ImageToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": [5, 10],
+        "duration_config": {'type': 'discrete', 'options': [5, 10], 'default': 5},
+        "action_id": "genvideo_1_sec_kling_2.6pro_{sound}_1080p",
+        "action_id_i2v": "genvideo_1_sec_kling_custom_2.6pro_{sound}_{frame_mode}",
+        "credit_map": {
+            ("ImageToVideo", "none", "1080p"): 5,
+            ("ImageToVideo", "vendor", "1080p"): 8,
+            ("TextToVideo", "none", "1080p"): 4,
+            ("TextToVideo", "vendor", "1080p"): 8,
+        },
+    },
+    "kling_2_5_pro": {
+        "name": "Kling 2.5 Pro",
+        "model": "kling-v2-5-turbo",
+        "vendor": "Kling",
+        "supported_modes": ["TextToVideo", "ImageToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": [5, 10],
+        "duration_config": {'type': 'discrete', 'options': [5, 10], 'default': 5},
+        "action_id": "genvideo_1_sec_kling_2.5pro_{sound}_1080p",
+        "action_id_i2v": "genvideo_1_sec_kling_custom_2.5pro_{sound}_{frame_mode}",
+        "credit_map": {
+            ("ImageToVideo", "none", "1080p"): 5,
+            ("ImageToVideo", "vendor", "1080p"): 5,
+            ("TextToVideo", "none", "1080p"): 4,
+            ("TextToVideo", "vendor", "1080p"): 4,
+        },
+    },
+    "kling_2_5_std": {
+        "name": "Kling 2.5 Standard",
+        "model": "kling-v2-5-turbo",
+        "vendor": "Kling",
+        "supported_modes": ["TextToVideo", "ImageToVideo"],
+        "supported_frame_modes": ["single"],
+        "supported_resolutions": ["720p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": [5, 10],
+        "duration_config": {'type': 'discrete', 'options': [5, 10], 'default': 5},
+        "action_id": "genvideo_1_sec_kling_2.5std_{sound}_720p",
+        "action_id_i2v": "genvideo_1_sec_kling_custom_2.5std_{sound}_single",
+        "credit_map": {
+            ("ImageToVideo", "none", "720p"): 3,
+            ("ImageToVideo", "vendor", "720p"): 3,
+            ("TextToVideo", "none", "720p"): 2,
+            ("TextToVideo", "vendor", "720p"): 2,
+        },
+    },
+    "kling_o1_pro": {
+        "name": "Kling O1 Pro",
+        "model": "kling-video-o1",
+        "vendor": "Kling",
+        "supported_modes": ["ImageToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": [5, 10],
+        "duration_config": {'type': 'discrete', 'options': [5, 10], 'default': 5},
+        "action_id_i2v": "genvideo_1_sec_kling_custom_o1pro_{sound}_{frame_mode}",
+        "credit_map": {
+            ("none", "1080p"): 6,
+            ("vendor", "1080p"): 6,
+        },
+    },
+    "kling_o1_std": {
+        "name": "Kling O1 Standard",
+        "model": "kling-video-o1",
+        "vendor": "Kling",
+        "supported_modes": ["ImageToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["720p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": [5, 10],
+        "duration_config": {'type': 'discrete', 'options': [5, 10], 'default': 5},
+        "action_id_i2v": "genvideo_1_sec_kling_custom_o1std_{sound}_{frame_mode}",
+        "credit_map": {
+            ("none", "720p"): 4,
+            ("vendor", "720p"): 4,
+        },
+    },
+
+    # ==========================================================================
+    # VIDU (ShengShu)
+    # ==========================================================================
+    "vidu_q3_pro": {
+        "name": "Vidu Q3 Pro",
+        "model": "viduq3-pro",
+        "vendor": "Vidu",
+        "supported_modes": ["TextToVideo", "ImageToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["540p", "720p", "1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": list(range(1, 17)),
+        "duration_config": {'type': 'continuous', 'min': 1, 'max': 16, 'step': 1, 'default': 5},
+        "supported_resolutions_by_mode": {
+            "ImageToVideo": ["1080p"],
+            "TextToVideo": ["540p", "720p", "1080p"],
+        },
+        "action_id": "genvideo_1_sec_vidu_q3pro_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_vidu_custom_q3pro_{sound}_{frame_mode}_1080p",
+        "credit_map": {
+            ("none", "540p"): 3,
+            ("none", "720p"): 5,
+            ("none", "1080p"): 6,
+            ("vendor", "540p"): 3,
+            ("vendor", "720p"): 5,
+            ("vendor", "1080p"): 6,
+        },
+    },
+    "vidu_q3_turbo": {
+        "name": "Vidu Q3 Turbo",
+        "model": "viduq3-turbo",
+        "vendor": "Vidu",
+        "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["540p", "720p", "1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": list(range(1, 17)),
+        "duration_config": {'type': 'continuous', 'min': 1, 'max': 16, 'step': 1, 'default': 5},
+        "supported_resolutions_by_mode": {
+            "ImageToVideo": ["720p"],
+            "TextToVideo": ["540p", "720p", "1080p"],
+            "ReferenceToVideo": ["540p", "720p", "1080p"],
+        },
+        "action_id": "genvideo_1_sec_vidu_q3turbo_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_vidu_custom_q3turbo_{sound}_{frame_mode}_720p",
+        "credit_map": {
+            ("none", "540p"): 2,
+            ("none", "720p"): 3,
+            ("none", "1080p"): 4,
+            ("vendor", "540p"): 2,
+            ("vendor", "720p"): 3,
+            ("vendor", "1080p"): 4,
+        },
+        "reference_media_limit": {
+            "supported_types": ["image"],
+            "max_images": 7,
+            "max_media": 7,
+        },
+    },
+    "vidu_q2": {
+        "name": "Vidu Q2",
+        "model": "viduq2",
+        "vendor": "Vidu",
+        "supported_modes": ["TextToVideo", "ImageToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["540p", "720p", "1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": list(range(1, 11)),
+        "duration_config": {'type': 'continuous', 'min': 1, 'max': 10, 'step': 1, 'default': 5},
+        "action_id": "genvideo_1_sec_vidu_q2_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_vidu_custom_q2turbo_{sound}_{frame_mode}",
+        "credit_map": {
+            ("ImageToVideo", "none", "540p"): 3,
+            ("ImageToVideo", "none", "720p"): 3,
+            ("ImageToVideo", "none", "1080p"): 3,
+            ("ImageToVideo", "vendor", "540p"): 3,
+            ("ImageToVideo", "vendor", "720p"): 3,
+            ("ImageToVideo", "vendor", "1080p"): 3,
+            ("TextToVideo", "none", "540p"): 1,
+            ("TextToVideo", "none", "720p"): 2,
+            ("TextToVideo", "none", "1080p"): 3,
+            ("TextToVideo", "vendor", "540p"): 1,
+            ("TextToVideo", "vendor", "720p"): 2,
+            ("TextToVideo", "vendor", "1080p"): 3,
+        },
+    },
+
+    # ==========================================================================
+    # PIXVERSE
+    # ==========================================================================
+    "pixverse_v6": {
+        "name": "PixVerse V6",
+        "model": "v6",
+        "vendor": "Pixverse",
+        "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
+        "supported_frame_modes": ["single", "startend"],
+        "supported_resolutions": ["540p", "720p", "1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16", "1:1"],
+        "supported_durations": list(range(1, 16)),
+        "duration_config": {'type': 'continuous', 'min': 1, 'max': 15, 'step': 1, 'default': 5},
+        "supported_resolutions_by_mode": {
+            "ImageToVideo": ["720p", "1080p"],
+            "TextToVideo": ["540p", "720p", "1080p"],
+            "ReferenceToVideo": ["540p", "720p", "1080p"],
+        },
+        "action_id": "genvideo_1_sec_motivai_pixverse6_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_motivai_custom_pixverse6_{sound}_{frame_mode}_{resolution}",
+        "credit_map": {
+            ("TextToVideo", "none", "540p"): 1,
+            ("TextToVideo", "none", "720p"): 2,
+            ("TextToVideo", "none", "1080p"): 4,
+            ("TextToVideo", "vendor", "540p"): 2,
+            ("TextToVideo", "vendor", "720p"): 3,
+            ("TextToVideo", "vendor", "1080p"): 6,
+            ("ReferenceToVideo", "none", "540p"): 1,
+            ("ReferenceToVideo", "none", "720p"): 2,
+            ("ReferenceToVideo", "none", "1080p"): 4,
+            ("ReferenceToVideo", "vendor", "540p"): 2,
+            ("ReferenceToVideo", "vendor", "720p"): 3,
+            ("ReferenceToVideo", "vendor", "1080p"): 6,
+            ("ImageToVideo", "none", "single", "720p"): 2,
+            ("ImageToVideo", "none", "startend", "720p"): 3,
+            ("ImageToVideo", "none", "single", "1080p"): 4,
+            ("ImageToVideo", "none", "startend", "1080p"): 6,
+            ("ImageToVideo", "vendor", "single", "720p"): 2,
+            ("ImageToVideo", "vendor", "startend", "720p"): 3,
+            ("ImageToVideo", "vendor", "single", "1080p"): 4,
+            ("ImageToVideo", "vendor", "startend", "1080p"): 6,
+        },
+        "reference_media_limit": {
+            "supported_types": ["image"],
+            "max_images": 7,
+            "max_media": 7,
+        },
+    },
+
+    # ==========================================================================
+    # OPENAI (Sora)
+    # ==========================================================================
+    "sora_2_pro": {
+        "name": "Sora 2 Pro",
+        "model": "sora-2-pro",
+        "vendor": "OpenAI",
+        "supported_modes": ["TextToVideo", "ImageToVideo"],
+        "supported_frame_modes": ["single"],
+        "supported_resolutions": ["720p", "1024p", "1080p"],
+        "supported_aspect_ratios": ["16:9", "9:16"],
+        "supported_durations": [4, 8, 12],
+        "duration_config": {'type': 'discrete', 'options': [4, 8, 12], 'default': 4},
+        "supported_resolutions_by_mode": {
+            "ImageToVideo": ["720p", "1080p"],
+            "TextToVideo": ["720p", "1024p", "1080p"],
+        },
+        "action_id": "genvideo_1_sec_openai_sora2pro_{sound}_{resolution}",
+        "action_id_i2v": "genvideo_1_sec_openai_custom_sora2pro_{sound}_single",
+        "credit_map": {
+            ("TextToVideo", "none", "720p"): 16,
+            ("TextToVideo", "none", "1024p"): 22,
+            ("TextToVideo", "none", "1080p"): 28,
+            ("TextToVideo", "vendor", "720p"): 16,
+            ("TextToVideo", "vendor", "1024p"): 22,
+            ("TextToVideo", "vendor", "1080p"): 28,
+            ("ImageToVideo", "none", "single", "720p"): 18,
+            ("ImageToVideo", "none", "single", "1080p"): 18,
+            ("ImageToVideo", "vendor", "single", "720p"): 18,
+            ("ImageToVideo", "vendor", "single", "1080p"): 18,
+        },
+    },
+    "sora_2_std": {
+        "name": "Sora 2 Standard",
+        "model": "sora-2",
+        "vendor": "OpenAI",
+        "supported_modes": ["TextToVideo", "ImageToVideo"],
+        "supported_frame_modes": ["single"],
+        "supported_resolutions": ["720p"],
+        "supported_aspect_ratios": ["16:9", "9:16"],
+        "supported_durations": [4, 8, 12],
+        "duration_config": {'type': 'discrete', 'options': [4, 8, 12], 'default': 4},
+        "action_id": "genvideo_1_sec_openai_sora2_{sound}_720p",
+        "action_id_i2v": "genvideo_1_sec_openai_custom_sora2std_{sound}_single",
+        "credit_map": {
+            ("none", "720p"): 6,
+            ("vendor", "720p"): 6,
+        },
+    },
+
+    # ==========================================================================
+    # RUNWAY
+    # ==========================================================================
+    "runway_gen4_turbo": {
+        "name": "Runway Gen4",
+        "model": "gen4_turbo",
+        "vendor": "Runway",
+        "supported_modes": ["ImageToVideo"],
+        "supported_frame_modes": ["single"],
+        "supported_resolutions": ["720p"],
+        "supported_aspect_ratios": ["16:9", "9:16"],
+        "supported_durations": [5, 10],
+        "duration_config": {'type': 'discrete', 'options': [5, 10], 'default': 5},
+        "action_id_i2v": "genvideo_1_sec_runway_custom_gen4turbo_{sound}_single",
+        "credit_map": {
+            ("none", "720p"): 3,
+            ("vendor", "720p"): 3,
         },
     },
 }
+
+
+# ==============================================================================
+# IMAGE MODELS CONFIGURATION (GERCEK RESIM MODELLERI - FRONTEND VE API KAYNAKLI)
+# ==============================================================================
 
 # Video Model ID Mapping (Frontend / API ID -> Backend Model ID)
 VIDEO_MODEL_MAPPING = {
@@ -469,6 +1372,7 @@ AVAILABLE_MODELS = {
     "tts": [],
     "music": []
 }
+
 
 def get_available_models(mode=None):
     import copy
@@ -1436,6 +2340,114 @@ class AuthExpiredError(Exception):
     """Raised when a member token is invalid or expired (Unauthorized)."""
     pass
 
+
+def resolve_video_action_and_credit(
+    model_key: str,
+    effect_mode: str = "TextToVideo",
+    resolution: str = "720p",
+    sound: str = "none",
+    frame_mode: str = "single"
+):
+    """
+    Verilen model, efekt modu, cozunurluk, ses ve frame moduna gore dogru action_id_str ve credit_cost dondurur.
+    """
+    model_data = VIDEO_MODELS_CONFIG.get(model_key, VIDEO_MODELS_CONFIG["seedance_2_0_fast"])
+    action_id_sound = {"vendor": "enable", "none": "none", "auto": "enable"}.get(sound, sound)
+
+    if effect_mode == "ImageToVideo":
+        overrides = model_data.get("action_id_i2v_overrides", {})
+        if resolution in overrides:
+            action_id_str = overrides[resolution].format(sound=action_id_sound, resolution=resolution, frame_mode=frame_mode)
+        elif "action_id_i2v" in model_data:
+            action_id_str = model_data["action_id_i2v"].format(sound=action_id_sound, resolution=resolution, frame_mode=frame_mode)
+        else:
+            overrides_t2v = model_data.get("action_id_overrides", {})
+            if resolution in overrides_t2v:
+                action_id_str = overrides_t2v[resolution].format(sound=action_id_sound, resolution=resolution)
+            else:
+                action_id_str = model_data["action_id"].format(sound=action_id_sound, resolution=resolution)
+    else:
+        overrides = model_data.get("action_id_overrides", {})
+        if resolution in overrides:
+            action_id_str = overrides[resolution].format(sound=action_id_sound, resolution=resolution)
+        else:
+            action_id_str = model_data["action_id"].format(sound=action_id_sound, resolution=resolution)
+
+    credit_map = model_data.get("credit_map")
+    if credit_map:
+        credit_cost = credit_map.get((effect_mode, sound, frame_mode, resolution))
+        if credit_cost is None:
+            credit_cost = credit_map.get((effect_mode, sound, resolution))
+        if credit_cost is None:
+            credit_cost = credit_map.get((sound, resolution))
+        if credit_cost is None:
+            credit_cost = model_data.get("credit", 3)
+    else:
+        credit_cost = model_data.get("credit", 3)
+
+    return action_id_str, credit_cost
+
+
+def get_model_duration_config(model_key: str) -> dict:
+    """
+    Modelin sure yapilandirmasini dondurur.
+    Ornek: {'type': 'continuous', 'min': 4, 'max': 30, 'step': 1, 'default': 5}
+    veya: {'type': 'discrete', 'options': [4, 6, 8], 'default': 4}
+    """
+    model_data = VIDEO_MODELS_CONFIG.get(model_key, {})
+    cfg = model_data.get("duration_config")
+    if cfg:
+        return cfg
+    durations = model_data.get("supported_durations", [5])
+    return {
+        "type": "discrete",
+        "options": durations,
+        "default": durations[0] if durations else 5
+    }
+
+
+def validate_model_duration(model_key: str, duration: int) -> bool:
+    """
+    Verilen surenin model tarafindan desteklenip desteklenmedigini dogrular.
+    """
+    cfg = get_model_duration_config(model_key)
+    if cfg.get("type") == "continuous":
+        step = cfg.get("step", 1)
+        min_v = cfg.get("min", 1)
+        max_v = cfg.get("max", 30)
+        return min_v <= duration <= max_v and ((duration - min_v) % step == 0)
+    else:
+        return duration in cfg.get("options", [])
+
+
+def resolve_image_action_and_credit(
+    model_key: str,
+    resolution: str = "1K",
+    has_reference: bool = False,
+    batch_size: int = 1
+):
+    """
+    Verilen resim modeli, cozunurluk, referans durumu ve batch size'a gore (feature_id, action_id, unit_credit, total_credit) dondurur.
+    """
+    model_data = IMAGE_MODELS_CONFIG.get(model_key, IMAGE_MODELS_CONFIG["gpt_image_2_5_sunburst"])
+    is_style_ref = model_data.get("effect_type") == "TtiStyleRef"
+    if is_style_ref:
+        feature_id = "TtiStyleRef"
+        action_id = f"gen_{batch_size}_img"
+        unit_credit = 1
+        total_credit = 1 * batch_size
+    else:
+        feature_id = "TextToImage"
+        mode_key = "enable" if has_reference else "none"
+        credits_dict = model_data.get("credits", {}).get(mode_key, {})
+        unit_credit = credits_dict.get(resolution, 2)
+        total_credit = unit_credit * batch_size
+        action_id = f"{model_data.get('actionId_prefix', 'genimage')}_{mode_key}_{resolution}"
+
+    return feature_id, action_id, unit_credit, total_credit
+
+
+
 def generate_ai_image_service(
     member_token: str,
     user_prompt: str = "a majestic fantasy landscape, digital art, highly detailed 8k",
@@ -1475,17 +2487,12 @@ def generate_ai_image_service(
     except ValueError:
         b_size = 1
 
-    if is_style_ref:
-        feature_id_val = "TtiStyleRef"
-        action_id_val = f"gen_{b_size}_img"
-        total_credit_cost = 1 * b_size
-    else:
-        feature_id_val = "TextToImage"
-        mode_key = "enable" if has_reference else "none"
-        credit_cost = model_data["credits"][mode_key][resolution]
-        total_credit_cost = credit_cost * b_size
-        action_id_val = f"{model_data['actionId_prefix']}_{mode_key}_{resolution}"
-
+    feature_id_val, action_id_val, unit_credit_cost, total_credit_cost = resolve_image_action_and_credit(
+        model_key=model_key,
+        resolution=resolution,
+        has_reference=has_reference,
+        batch_size=b_size
+    )
     sync_feature_credit(feature_id=feature_id_val, action_id=action_id_val, credit=total_credit_cost)
     rsa_pub_key = get_myedit_rsa_public_key()
     sub_token = get_subscription_token(member_token)
@@ -1723,6 +2730,7 @@ def generate_ai_image_service(
 
     return {"status": "Timeout", "reference_urls": uploaded_reference_urls}
 
+
 def generate_ai_video_service(
     member_token: str,
     user_prompt: str = "a cute astronaut cat floating in space station, cinematic lighting",
@@ -1844,40 +2852,16 @@ def generate_ai_video_service(
                 except Exception:
                     pass
 
-    action_id_sound = {"vendor": "enable", "none": "none", "auto": "enable"}.get(sound, sound)
-    if effect_mode == "ImageToVideo":
-        overrides = model_data.get("action_id_i2v_overrides", {})
-        if resolution in overrides:
-            action_id_str = overrides[resolution].format(sound=action_id_sound, resolution=resolution, frame_mode=frame_mode)
-        elif "action_id_i2v" in model_data:
-            action_id_str = model_data["action_id_i2v"].format(sound=action_id_sound, resolution=resolution, frame_mode=frame_mode)
-        else:
-            overrides_t2v = model_data.get("action_id_overrides", {})
-            if resolution in overrides_t2v:
-                action_id_str = overrides_t2v[resolution].format(sound=action_id_sound, resolution=resolution)
-            else:
-                action_id_str = model_data["action_id"].format(sound=action_id_sound, resolution=resolution)
-    else:
-        overrides = model_data.get("action_id_overrides", {})
-        if resolution in overrides:
-            action_id_str = overrides[resolution].format(sound=action_id_sound, resolution=resolution)
-        else:
-            action_id_str = model_data["action_id"].format(sound=action_id_sound, resolution=resolution)
-            
-    credit_map = model_data.get("credit_map")
-    if credit_map:
-        credit_cost = credit_map.get((effect_mode, sound, frame_mode, resolution))
-        if credit_cost is None:
-            credit_cost = credit_map.get((effect_mode, sound, resolution))
-        if credit_cost is None:
-            credit_cost = credit_map.get((sound, resolution))
-        if credit_cost is None:
-            credit_cost = model_data.get("credit", 3)
-    else:
-        credit_cost = model_data.get("credit", 3)
+    action_id_str, credit_cost = resolve_video_action_and_credit(
+        model_key=actual_model_key,
+        effect_mode=effect_mode,
+        resolution=resolution,
+        sound=sound,
+        frame_mode=frame_mode
+    )
 
     get_member_remaining_credits(member_token)
-    sync_feature_credit(feature_id=effect_mode, action_id=action_id_str, credit=credit_cost)
+    sync_feature_credit(feature_id=effect_mode, action_id=action_id_str, credit=credit_cost * processing_duration)
 
     rsa_pub_key = get_myedit_rsa_public_key()
     sub_token = get_subscription_token(member_token)
@@ -2178,6 +3162,7 @@ def generate_ai_video_service(
 # ==============================================================================
 # service.py ACCOUNT CACHE & REUSE SYSTEM
 # ==============================================================================
+
 
 ACTIVE_ACCOUNTS = {} # {api_key_id: {"email": email, "password": password, "member_token": token, "timestamp": time.time()}}
 ACCOUNT_LOCK = threading.Lock()
