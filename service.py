@@ -429,6 +429,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Seedance 2.0 Fast",
         "model": "dreamina-seedance-2-0-fast-260128",
         "vendor": "BytePlus",
+        "promptLength": 20000,
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["480p", "720p"],
@@ -460,6 +461,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Seedance 2.0 Mini",
         "model": "dreamina-seedance-2-0-mini-260615",
         "vendor": "BytePlus",
+        "promptLength": 20000,
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["480p", "720p"],
@@ -491,6 +493,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Seedance 2.0 Pro",
         "model": "dreamina-seedance-2-0-260128",
         "vendor": "BytePlus",
+        "promptLength": 20000,
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["480p", "720p", "1080p", "4K"],
@@ -526,6 +529,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Seedance 2.5",
         "model": "dreamina-seedance-2-5-260628",
         "vendor": "BytePlus",
+        "promptLength": 20000,
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["480p", "720p", "1080p"],
@@ -567,6 +571,7 @@ VIDEO_MODELS_CONFIG = {
             "ReferenceToVideo": "happyhorse-1.1-r2v",
         },
         "vendor": "Alibaba",
+        "promptLength": 2500,
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
         "supported_frame_modes": ["single"],
         "supported_resolutions": ["720p", "1080p"],
@@ -600,6 +605,7 @@ VIDEO_MODELS_CONFIG = {
             "ReferenceToVideo": "happyhorse-1.0-r2v",
         },
         "vendor": "Alibaba",
+        "promptLength": 2500,
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
         "supported_frame_modes": ["single"],
         "supported_resolutions": ["720p", "1080p"],
@@ -633,6 +639,7 @@ VIDEO_MODELS_CONFIG = {
             "ReferenceToVideo": "wan2.7-r2v",
         },
         "vendor": "Alibaba",
+        "promptLength": 5000,
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["720p", "1080p"],
@@ -664,6 +671,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Wan 3.0",
         "model": "wan3.0-video",
         "vendor": "Alibaba",
+        "promptLength": 20000,
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["480p", "720p", "1080p"],
@@ -701,6 +709,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Veo 3.1",
         "model": "veo-3.1-generate-preview",
         "vendor": "Google",
+        "promptLength": 4000,
         "supported_modes": ["TextToVideo", "ImageToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["720p", "1080p", "4k"],
@@ -734,6 +743,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Veo 3.1 Fast",
         "model": "veo-3.1-fast-generate-preview",
         "vendor": "Google",
+        "promptLength": 4000,
         "supported_modes": ["TextToVideo", "ImageToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["720p", "1080p", "4k"],
@@ -767,6 +777,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Veo 3.1 Lite",
         "model": "veo-3.1-lite-generate-001",
         "vendor": "Google",
+        "promptLength": 4000,
         "supported_modes": ["TextToVideo", "ImageToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["720p", "1080p"],
@@ -786,6 +797,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Gemini Omni 1.1 Flash",
         "model": "gemini-omni-1.1-flash-preview",
         "vendor": "Google",
+        "promptLength": 3500,
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["360p", "720p", "1080p", "4k"],
@@ -834,6 +846,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Kling 3.0",
         "model": "kling-v3",
         "vendor": "Kling",
+        "promptLength": 2500,
         "supported_modes": ["TextToVideo", "ImageToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["720p", "1080p", "4k"],
@@ -908,6 +921,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Kling 2.6",
         "model": "kling-v2-6",
         "vendor": "Kling",
+        "promptLength": 2500,
         "supported_modes": ["TextToVideo", "ImageToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["1080p"],
@@ -927,6 +941,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Kling 2.5 Pro",
         "model": "kling-v2-5-turbo",
         "vendor": "Kling",
+        "promptLength": 2500,
         "supported_modes": ["TextToVideo", "ImageToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["1080p"],
@@ -946,6 +961,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Kling 2.5 Standard",
         "model": "kling-v2-5-turbo",
         "vendor": "Kling",
+        "promptLength": 2500,
         "supported_modes": ["TextToVideo", "ImageToVideo"],
         "supported_frame_modes": ["single"],
         "supported_resolutions": ["720p"],
@@ -965,6 +981,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Kling O1 Pro",
         "model": "kling-video-o1",
         "vendor": "Kling",
+        "promptLength": 2500,
         "supported_modes": ["ImageToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["1080p"],
@@ -981,6 +998,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Kling O1 Standard",
         "model": "kling-video-o1",
         "vendor": "Kling",
+        "promptLength": 2500,
         "supported_modes": ["ImageToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["720p"],
@@ -1001,6 +1019,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Vidu Q3 Pro",
         "model": "viduq3-pro",
         "vendor": "Vidu",
+        "promptLength": 2000,
         "supported_modes": ["TextToVideo", "ImageToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["540p", "720p", "1080p"],
@@ -1026,6 +1045,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Vidu Q3 Turbo",
         "model": "viduq3-turbo",
         "vendor": "Vidu",
+        "promptLength": 2000,
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["540p", "720p", "1080p"],
@@ -1057,6 +1077,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Vidu Q2",
         "model": "viduq2",
         "vendor": "Vidu",
+        "promptLength": 2000,
         "supported_modes": ["TextToVideo", "ImageToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["540p", "720p", "1080p"],
@@ -1088,6 +1109,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "PixVerse V6",
         "model": "v6",
         "vendor": "Pixverse",
+        "promptLength": 2048,
         "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
         "supported_frame_modes": ["single", "startend"],
         "supported_resolutions": ["540p", "720p", "1080p"],
@@ -1137,6 +1159,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Sora 2 Pro",
         "model": "sora-2-pro",
         "vendor": "OpenAI",
+        "promptLength": 2500,
         "supported_modes": ["TextToVideo", "ImageToVideo"],
         "supported_frame_modes": ["single"],
         "supported_resolutions": ["720p", "1024p", "1080p"],
@@ -1166,6 +1189,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Sora 2 Standard",
         "model": "sora-2",
         "vendor": "OpenAI",
+        "promptLength": 2500,
         "supported_modes": ["TextToVideo", "ImageToVideo"],
         "supported_frame_modes": ["single"],
         "supported_resolutions": ["720p"],
@@ -1187,6 +1211,7 @@ VIDEO_MODELS_CONFIG = {
         "name": "Runway Gen4",
         "model": "gen4_turbo",
         "vendor": "Runway",
+        "promptLength": 2500,
         "supported_modes": ["ImageToVideo"],
         "supported_frame_modes": ["single"],
         "supported_resolutions": ["720p"],
@@ -1207,34 +1232,22 @@ VIDEO_MODELS_CONFIG = {
 # ==============================================================================
 
 # Video Model ID Mapping (Frontend / API ID -> Backend Model ID)
+# Frontend "SORA 2" ismiyle gösterilir, arka planda seedance_2_5 kullanılır
 VIDEO_MODEL_MAPPING = {
-    "sora_2_std": "sora_2_std",
-    "SORA_2_STD": "sora_2_std",
-    "SORA_2": "sora_2_std",
-    "sora_2": "sora_2_std",
-    "sora-2": "sora_2_std",
-    "seedance_2_0_mini": "seedance_2_0_mini",
-    "SEEDANCE_2_0_MINI": "seedance_2_0_mini",
-    "SEEDANCE_MINI": "seedance_2_0_mini",
-    "seedance_mini": "seedance_2_0_mini",
-    "seedance": "seedance_2_0_mini",
-    "gemini_omni_flash": "gemini_omni_flash",
-    "GEMINI_OMNI_FLASH": "gemini_omni_flash",
-    "gemini_omni": "gemini_omni_flash",
-    "GEMINI_OMNI": "gemini_omni_flash",
-    "kling_o3": "kling_o3",
-    "KLING_O3": "kling_o3",
-    "kling3": "kling_o3",
-    "kling_3": "kling_o3",
+    "sora_2_std": "seedance_2_5",
+    "SORA_2_STD": "seedance_2_5",
+    "SORA_2": "seedance_2_5",
+    "sora_2": "seedance_2_5",
+    "sora-2": "seedance_2_5",
+    "seedance_2_5": "seedance_2_5",
+    "SEEDANCE_2_5": "seedance_2_5",
 }
 
 # Direct mapping in VIDEO_MODELS_CONFIG for safety
-VIDEO_MODELS_CONFIG["SORA_2_STD"] = VIDEO_MODELS_CONFIG["sora_2_std"]
-VIDEO_MODELS_CONFIG["SORA_2"] = VIDEO_MODELS_CONFIG["sora_2_std"]
-VIDEO_MODELS_CONFIG["SEEDANCE_2_0_MINI"] = VIDEO_MODELS_CONFIG["seedance_2_0_mini"]
-VIDEO_MODELS_CONFIG["SEEDANCE_MINI"] = VIDEO_MODELS_CONFIG["seedance_2_0_mini"]
-VIDEO_MODELS_CONFIG["GEMINI_OMNI_FLASH"] = VIDEO_MODELS_CONFIG["gemini_omni_flash"]
-VIDEO_MODELS_CONFIG["KLING_O3"] = VIDEO_MODELS_CONFIG["kling_o3"]
+VIDEO_MODELS_CONFIG["SORA_2_STD"] = VIDEO_MODELS_CONFIG["seedance_2_5"]
+VIDEO_MODELS_CONFIG["SORA_2"] = VIDEO_MODELS_CONFIG["seedance_2_5"]
+VIDEO_MODELS_CONFIG["sora_2_std"] = VIDEO_MODELS_CONFIG["seedance_2_5"]
+VIDEO_MODELS_CONFIG["SEEDANCE_2_5"] = VIDEO_MODELS_CONFIG["seedance_2_5"]
 
 MODELS = {} # Compatibility mapping
 
@@ -1251,7 +1264,7 @@ AVAILABLE_MODELS = {
             "default_size": "1:1",
             "default_resolution": "1K",
             "max_prompt_length": 2500,
-            "credit": 15
+            "credit": 2
         },
         {
             "id": "NANO_BANANA_2",
@@ -1264,7 +1277,7 @@ AVAILABLE_MODELS = {
             "default_size": "1:1",
             "default_resolution": "1K",
             "max_prompt_length": 2500,
-            "credit": 15
+            "credit": 2
         },
         {
             "id": "NANO_BANANA_PRO",
@@ -1277,7 +1290,7 @@ AVAILABLE_MODELS = {
             "default_size": "1:1",
             "default_resolution": "1K",
             "max_prompt_length": 2500,
-            "credit": 15
+            "credit": 2
         },
         {
             "id": "GPT_IMAGE_2",
@@ -1290,83 +1303,29 @@ AVAILABLE_MODELS = {
             "default_size": "1:1",
             "default_resolution": "1K",
             "max_prompt_length": 8000,
-            "credit": 15
+            "credit": 2
         }
     ],
     "video": [
         {
             "id": "sora_2_std",
-            "name": "Sora 2",
-            "description": "Sora 2 by OpenAI - Supports Start Frame",
+            "name": "SORA 2",
+            "description": "SORA 2 - AI Video Generation (8s, 720p)",
             "supports_start_frame": True,
-            "supports_end_frame": False,
-            "supports_reference_images": False,
-            "max_reference_images": 0,
-            "supported_sizes": ["16:9", "9:16"],
+            "supports_end_frame": True,
+            "supports_reference_images": True,
+            "max_reference_images": 20,
+            "supported_sizes": ["16:9", "9:16", "1:1"],
             "supported_durations": [8],
             "supported_resolutions": ["720p"],
             "default_size": "16:9",
             "default_resolution": "720p",
             "default_duration": 8,
-            "max_prompt_length": 2000,
-            "credit": 50,
-            "supported_modes": ["ImageToVideo"],
-            "supported_frame_modes": ["single"],
-            "requires_start_frame": True
-        },
-        {
-            "id": "seedance_2_0_mini",
-            "name": "Seedance 2.0",
-            "description": "Seedance 2.0 by BytePlus - Supports Start/End Frame, up to 5 Reference Images",
-            "supports_start_frame": True,
-            "supports_end_frame": True,
-            "supports_reference_images": True,
-            "max_reference_images": 5,
-            "supported_sizes": ["16:9", "9:16", "1:1"],
-            "supported_durations": [10],
-            "supported_resolutions": ["720p"],
-            "default_size": "16:9",
-            "default_resolution": "720p",
-            "default_duration": 10,
-            "max_prompt_length": 4900,
-            "credit": 50,
-            "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"]
-        },
-        {
-            "id": "gemini_omni_flash",
-            "name": "Gemini Omni Flash",
-            "description": "Gemini Omni Flash by Google - Supports Start Frame, up to 5 Reference Images",
-            "supports_start_frame": True,
-            "supports_end_frame": False,
-            "supports_reference_images": True,
-            "max_reference_images": 5,
-            "supported_sizes": ["16:9", "9:16"],
-            "supported_durations": [10],
-            "supported_resolutions": ["720p"],
-            "default_size": "16:9",
-            "default_resolution": "720p",
-            "default_duration": 10,
-            "max_prompt_length": 3500,
-            "credit": 55,
-            "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"]
-        },
-        {
-            "id": "kling_o3",
-            "name": "Kling 3.0",
-            "description": "Kling 3.0 by Kling - Supports Start/End Frame, up to 5 Reference Images",
-            "supports_start_frame": True,
-            "supports_end_frame": True,
-            "supports_reference_images": True,
-            "max_reference_images": 5,
-            "supported_sizes": ["16:9", "9:16", "1:1"],
-            "supported_durations": [10],
-            "supported_resolutions": ["720p"],
-            "default_size": "16:9",
-            "default_resolution": "720p",
-            "default_duration": 10,
-            "max_prompt_length": 2500,
-            "credit": 55,
-            "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"]
+            "max_prompt_length": 20000,
+            "credit": 5,
+            "supported_modes": ["TextToVideo", "ImageToVideo", "ReferenceToVideo"],
+            "supported_frame_modes": ["single", "startend"],
+            "requires_start_frame": False
         }
     ],
     "tts": [],
@@ -1382,6 +1341,8 @@ def get_available_models(mode=None):
         config = VIDEO_MODELS_CONFIG.get(actual_model_id, {})
         if 'supported_modes' in config:
             model['supported_modes'] = config['supported_modes']
+        if 'promptLength' in config:
+            model['max_prompt_length'] = config['promptLength']
         if 'reference_media_limit' in config:
             model['reference_media_limit'] = config['reference_media_limit']
         if 'supported_frame_modes' in config:
@@ -1401,14 +1362,14 @@ def get_available_models(mode=None):
 
 def make_proxy_url(raw_url):
     """
-    Wraps a direct media URL with the local /api/proxy endpoint.
+    Doğrudan ham medya URL'sini döner (proxy sarmalamasını devre dışı bırakır).
     """
     if not raw_url or not isinstance(raw_url, str):
         return raw_url
-    if raw_url.startswith("/api/proxy"):
-        return raw_url
-    import urllib.parse
-    return f"/api/proxy?url={urllib.parse.quote(raw_url, safe='')}"
+    if raw_url.startswith("/api/proxy?url="):
+        import urllib.parse
+        return urllib.parse.unquote(raw_url.split("/api/proxy?url=", 1)[1])
+    return raw_url
 
 
 from bs4 import BeautifulSoup
@@ -2088,7 +2049,7 @@ def check_task_bonus(member_token: str, feature_id: str = "TextToImage"):
         return None
 
 def collect_all_bonuses(member_token: str):
-    """Kullanicinin tum aktif task bonuslarini (kredilerini) ve gunluk bonusunu toplar (toplam 174 kredi)."""
+    """Kullanicinin tum aktif task bonuslarini (kredilerini) ve gunluk bonusunu toplar (toplam 311 kredi)."""
     print("\n[Bonuses] Tum gunluk ve gorev bonuslari toplaniyor...")
     
     # 1. Gunluk Bonus (+3 Kredi)
@@ -2098,15 +2059,23 @@ def collect_all_bonuses(member_token: str):
     except Exception as e:
         print(f"  [!] Gunluk bonus toplama hatasi: {e}")
         
-    # 2. Aktif Gorev Bonuslari (Toplam 171 Kredi)
+    # 2. Aktif Gorev Bonuslari (Toplam 308 Kredi + 3 Gunluk = 311 Kredi)
     active_tasks = [
-        "TextToImage",      # 14 Kredi
-        "AICollage",        # 6 Kredi
-        "AIReplacement",    # 6 Kredi
-        "TextToVideo",      # 50 Kredi
-        "ImageToVideo",     # 50 Kredi
-        "Storytelling",     # 40 Kredi
-        "LyricsToSong"      # 5 Kredi
+        "TextToImage",          # 14 Kredi
+        "AICollage",            # 3 Kredi
+        "AIReplacement",        # 6 Kredi
+        "TextToVideo",          # 50 Kredi
+        "ImageToVideo",         # 50 Kredi
+        "Storytelling",         # 40 Kredi
+        "LyricsToSong",         # 5 Kredi
+        "VideoToVideo",         # 50 Kredi (Sohbetle Video Duzenleme)
+        "AICinematicShorts",    # 40 Kredi (CineStory Sinematik Video)
+        "VideoAutoReframe",     # 20 Kredi (Video Kadrajlama)
+        "AITryOn_1",            # 6 Kredi (Kiyafet Deneme 1)
+        "AITryOn_2",            # 6 Kredi (Evcil Hayvan Kiyafet)
+        "AITryOn",              # 6 Kredi (Genel Kiyafet Deneme)
+        "TrendingAITemplates",  # 6 Kredi (Trend AI Sablonlari)
+        "AIHairstyleV2",        # 6 Kredi (AI Sac Modeli)
     ]
     
     for task_id in active_tasks:
@@ -3449,10 +3418,10 @@ def process_image_task(task_id, params, api_key_id):
         batch_size = int(params.get('batch_size', 1))
 
         # Determine API quota to deduct for image model
-        model_api_credit = 15
+        model_api_credit = 2
         for m in AVAILABLE_MODELS.get('image', []):
             if m.get('id') == raw_model or m.get('id') == model:
-                model_api_credit = m.get('credit', 15)
+                model_api_credit = m.get('credit', 2)
                 break
         total_quota_to_deduct = model_api_credit * batch_size
 
@@ -3610,19 +3579,19 @@ def process_video_task(task_id, params, api_key_id):
 
         prompt = params.get('prompt', '')
         has_start_frame = bool(params.get('start_frame'))
-        default_model = 'sora_2_std' if has_start_frame else 'seedance_2_0_mini'
+        default_model = 'sora_2_std'
         raw_model = params.get('model') or default_model
         model = VIDEO_MODEL_MAPPING.get(raw_model, raw_model)
         aspect_ratio = params.get('size', '16:9')
         resolution = params.get('resolution', '720p')
-        duration = int(params.get('duration', 8 if model == 'sora_2_std' else 10))
+        duration = int(params.get('duration', 8))
         sound = params.get('sound', 'vendor')
 
         # Determine API quota to deduct for video model
-        model_api_credit = 50
+        model_api_credit = 5
         for m in AVAILABLE_MODELS.get('video', []):
             if m.get('id') == raw_model or m.get('id') == model:
-                model_api_credit = m.get('credit', 50)
+                model_api_credit = m.get('credit', 5)
                 break
 
         input_mode = "TextToVideo"
