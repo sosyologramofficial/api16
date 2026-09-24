@@ -1362,18 +1362,14 @@ def get_available_models(mode=None):
 
 def make_proxy_url(raw_url):
     """
-    Ham medya URL'sini /api/proxy?url= ile sararak döner.
-    Proxy endpoint'i üzerinden şifre çözme ve stream desteği sağlar.
+    Doğrudan ham medya URL'sini döner (proxy sarmalaması olmadan).
     """
     if not raw_url or not isinstance(raw_url, str):
         return raw_url
-    # Zaten proxy URL ise dokunma
+    # Proxy prefix varsa çıkar, ham URL'yi döndür
     if raw_url.startswith("/api/proxy?url="):
-        return raw_url
-    # HTTP/HTTPS URL'leri proxy ile sar
-    if raw_url.startswith("http://") or raw_url.startswith("https://"):
         import urllib.parse
-        return f"/api/proxy?url={urllib.parse.quote(raw_url, safe='')}"
+        return urllib.parse.unquote(raw_url.split("/api/proxy?url=", 1)[1])
     return raw_url
 
 
