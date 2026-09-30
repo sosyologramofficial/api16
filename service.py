@@ -1232,22 +1232,22 @@ VIDEO_MODELS_CONFIG = {
 # ==============================================================================
 
 # Video Model ID Mapping (Frontend / API ID -> Backend Model ID)
-# Frontend "SORA 2" ismiyle gösterilir, arka planda seedance_2_5 kullanılır
+# Frontend "SORA 2" ismiyle gösterilir, arka planda gemini_omni_flash kullanılır
 VIDEO_MODEL_MAPPING = {
-    "sora_2_std": "seedance_2_5",
-    "SORA_2_STD": "seedance_2_5",
-    "SORA_2": "seedance_2_5",
-    "sora_2": "seedance_2_5",
-    "sora-2": "seedance_2_5",
-    "seedance_2_5": "seedance_2_5",
-    "SEEDANCE_2_5": "seedance_2_5",
+    "sora_2_std": "gemini_omni_flash",
+    "SORA_2_STD": "gemini_omni_flash",
+    "SORA_2": "gemini_omni_flash",
+    "sora_2": "gemini_omni_flash",
+    "sora-2": "gemini_omni_flash",
+    "seedance_2_5": "gemini_omni_flash",
+    "SEEDANCE_2_5": "gemini_omni_flash",
 }
 
 # Direct mapping in VIDEO_MODELS_CONFIG for safety
-VIDEO_MODELS_CONFIG["SORA_2_STD"] = VIDEO_MODELS_CONFIG["seedance_2_5"]
-VIDEO_MODELS_CONFIG["SORA_2"] = VIDEO_MODELS_CONFIG["seedance_2_5"]
-VIDEO_MODELS_CONFIG["sora_2_std"] = VIDEO_MODELS_CONFIG["seedance_2_5"]
-VIDEO_MODELS_CONFIG["SEEDANCE_2_5"] = VIDEO_MODELS_CONFIG["seedance_2_5"]
+VIDEO_MODELS_CONFIG["SORA_2_STD"] = VIDEO_MODELS_CONFIG["gemini_omni_flash"]
+VIDEO_MODELS_CONFIG["SORA_2"] = VIDEO_MODELS_CONFIG["gemini_omni_flash"]
+VIDEO_MODELS_CONFIG["sora_2_std"] = VIDEO_MODELS_CONFIG["gemini_omni_flash"]
+VIDEO_MODELS_CONFIG["SEEDANCE_2_5"] = VIDEO_MODELS_CONFIG["gemini_omni_flash"]
 
 MODELS = {} # Compatibility mapping
 
@@ -1264,7 +1264,7 @@ AVAILABLE_MODELS = {
             "default_size": "1:1",
             "default_resolution": "1K",
             "max_prompt_length": 2500,
-            "credit": 2
+            "credit": 1
         },
         {
             "id": "NANO_BANANA_2",
@@ -1277,7 +1277,7 @@ AVAILABLE_MODELS = {
             "default_size": "1:1",
             "default_resolution": "1K",
             "max_prompt_length": 2500,
-            "credit": 2
+            "credit": 1
         },
         {
             "id": "NANO_BANANA_PRO",
@@ -1290,7 +1290,7 @@ AVAILABLE_MODELS = {
             "default_size": "1:1",
             "default_resolution": "1K",
             "max_prompt_length": 2500,
-            "credit": 2
+            "credit": 1
         },
         {
             "id": "GPT_IMAGE_2",
@@ -1303,7 +1303,7 @@ AVAILABLE_MODELS = {
             "default_size": "1:1",
             "default_resolution": "1K",
             "max_prompt_length": 8000,
-            "credit": 2
+            "credit": 1
         }
     ],
     "video": [
@@ -1312,10 +1312,10 @@ AVAILABLE_MODELS = {
             "name": "SORA 2",
             "description": "SORA 2 - AI Video Generation (8s, 720p)",
             "supports_start_frame": True,
-            "supports_end_frame": True,
-            "supports_reference_images": True,
-            "max_reference_images": 20,
-            "supported_sizes": ["16:9", "9:16", "1:1"],
+            "supports_end_frame": False,
+            "supports_reference_images": False,
+            "max_reference_images": 5,
+            "supported_sizes": ["16:9", "9:16"],
             "supported_durations": [8],
             "supported_resolutions": ["720p"],
             "default_size": "16:9",
@@ -2652,7 +2652,7 @@ def generate_ai_image_service(
     polling = apply_json.get("polling", {})
     delay = polling.get("delay", 5)
 
-    max_attempts = 120
+    max_attempts = 360
     decrypted_files = []
     for i in range(max_attempts):
         time.sleep(delay)
@@ -3037,7 +3037,7 @@ def generate_ai_video_service(
     polling = apply_json.get("polling", {})
     delay = polling.get("delay", 5)
 
-    max_attempts = 120
+    max_attempts = 360
     decrypted_files = []
     for i in range(max_attempts):
         time.sleep(delay)
